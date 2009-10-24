@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.adligo.models.core.client.I_User;
+import org.adligo.models.core.client.InvalidParameterException;
+import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
 import org.adligo.models.core.client.User;
 
@@ -13,34 +15,55 @@ import org.adligo.models.core.client.User;
  * @author scott
  *
  */
-public class UserRelations extends User implements I_User, Serializable {
+public class UserRelations implements I_User, Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * the list of roles in all of the groups
+	 */
 	protected Set<String> roles;
+	/**
+	 * the list of groups that the user belongs to
+	 */
 	protected Set<String> groups;
+	
+	/**
+	 * the user could pertain to either a user or a organization
+	 */
+	protected User user;
 	protected Person person;
+	protected Organization org;
+	
 	
 	protected UserRelations() {}
 	
-	public UserRelations(UserRelations p) {
-		super(p);
-		
-		if (p.roles != null) {
-			roles = Collections.unmodifiableSet(p.roles);
+	public UserRelations(UserRelations p) throws InvalidParameterException {
+		if (p.user != null) {
+			user = new User(p.user);
 		}
-		if (p.groups != null) {
-			groups = Collections.unmodifiableSet(p.groups);
+		if (p.org != null) {
+			org = new Organization(p.org);
 		}
-		person = p.person;
+		roles = p.roles;
+		groups = p.groups;
+		if (p.person != null) {
+			person = new Person(p.person);
+		}
 	}
 	
 	public String getUserName() {
+		if (org != null) {
+			return org.getName();
+		}
 		if (person != null) {
 			return person.getName();
 		}
-		return super.getName();
+		if (user != null) {
+			return user.getName();
+		}
+		return "";
 	}
 
 	public boolean isUserInRole(String role) {
@@ -53,15 +76,29 @@ public class UserRelations extends User implements I_User, Serializable {
 	}
 
 	public Set<String> getRoles() {
-		return roles;
+		if (roles != null) {
+			return Collections.unmodifiableSet(roles);
+		}
+		return null;
 	}
 
 	public Set<String> getGroups() {
-		return groups;
+		if (groups != null) {
+			return Collections.unmodifiableSet(groups);
+		}
+		return null;
 	}
 
 	public Person getPerson() {
 		return person;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public Organization getOrg() {
+		return org;
 	}
 
 }

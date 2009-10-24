@@ -18,13 +18,13 @@ public class UserGroup extends Organization implements Serializable {
 	
 	public UserGroup(UserGroup group) {
 		super(group);
-		if (group.roles != null) {
-			roles = Collections.unmodifiableSet(group.roles);
-		}
-		
+		roles = group.roles;
 	}
 	
 	public Set<String> getRoles() {
-		return roles;
+		if (roles != null) {
+			return Collections.unmodifiableSet(roles);
+		}
+		return null;
 	}
 }
