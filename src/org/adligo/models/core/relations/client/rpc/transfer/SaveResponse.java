@@ -9,7 +9,7 @@ public class SaveResponse implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private boolean successful;
-
+	private String failureCause;
 	
 	public boolean isSuccessful() {
 		return successful;
@@ -17,6 +17,14 @@ public class SaveResponse implements Serializable{
 
 	public void setSuccessful(boolean successful) {
 		this.successful = successful;
+	}
+
+	public String getFailureCause() {
+		return failureCause;
+	}
+
+	public void setFailureCause(String failureCause) {
+		this.failureCause = failureCause;
 	}
 	
 }

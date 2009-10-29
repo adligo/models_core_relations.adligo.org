@@ -5,5 +5,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/models_core"/>
 	<classpathentry kind="var" path="GWT_HOME/gwt-user.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i_util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/params"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/i_log"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

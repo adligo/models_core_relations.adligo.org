@@ -96,4 +96,7 @@ public class UserRelationsMutant extends UserRelations implements I_User, Serial
 		org_mutant.setId(id);
 	}
 	
+	public StorageIdentifier getUserId() {
+		return user_mutant.getId();
+	}
 }
