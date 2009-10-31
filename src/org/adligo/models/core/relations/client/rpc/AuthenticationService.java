@@ -36,7 +36,7 @@ public interface AuthenticationService extends RemoteService {
 	 * @param relations
 	 * @return
 	 */
-	//public SaveResponse saveGroup(UserGroupMutant group);
+	public SaveResponse saveGroup(UserGroupMutant group);
 	
 	/**
 	 * try to login
@@ -44,13 +44,13 @@ public interface AuthenticationService extends RemoteService {
 	 * 
 	 * @return
 	 */
-	//public I_User login(AuthenticationRequest req);
+	public I_User login(AuthenticationRequest req);
 	
 	/**
 	 * logs the user out of the system
 	 * 
 	 */
-	//public void logout();
+	public void logout();
 	
 	/**
 	 * the list of domains should come with the config
@@ -65,7 +65,7 @@ public interface AuthenticationService extends RemoteService {
 	 * 
 	 * @param req
 	 */
-	//public void requestForgotPasswordEmail(AuthenticationRequest req);
+	public void requestForgotPasswordEmail(AuthenticationRequest req);
 	
 	/**
 	 * resets the password for the User associated
@@ -75,7 +75,7 @@ public interface AuthenticationService extends RemoteService {
 	 * @param req
 	 * @return
 	 */
-	//public ResetPasswordResponse resetPassword(ResetPasswordRequest req);
+	public ResetPasswordResponse resetPassword(ResetPasswordRequest req);
 
 	/**
 	 * locate a users based on parameters
@@ -83,7 +83,7 @@ public interface AuthenticationService extends RemoteService {
 	 * @param params (I_TemplateParams xml String toXml fromXml)
 	 * @return
 	 */
-	//public Collection<UserRelations> findUsers(String params);
+	public Collection<UserRelations> findUsers(String params);
 
 	/**
 	 * locate user groups based on parameters
@@ -91,6 +91,6 @@ public interface AuthenticationService extends RemoteService {
 	 * @param params (I_TemplateParams xml String toXml fromXml)
 	 * @return
 	 */
-	//public Collection<UserGroup> findUserGroups(String params);
+	public Collection<UserGroup> findUserGroups(String params);
 }
 

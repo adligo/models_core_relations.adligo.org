@@ -31,23 +31,20 @@ public interface AuthenticationServiceAsync {
 	 * delegate to figure out if this user can do this exc
 	 * 
 	 * @param relations
-	 * @return
 	 */
-	//public SaveResponse saveGroup(UserGroupMutant group);
+	public void saveGroup(UserGroupMutant group, AsyncCallback<SaveResponse> callback);
 	
 	/**
 	 * try to login
 	 * return null if failed
-	 * 
-	 * @return
 	 */
-	//public I_User login(AuthenticationRequest req);
+	public void login(AuthenticationRequest req, AsyncCallback<I_User> callback);
 	
 	/**
 	 * logs the user out of the system
 	 * 
 	 */
-	//public void logout();
+	public void logout(AsyncCallback<Void> callback);
 	
 	/**
 	 * the list of domains should come with the config
@@ -62,7 +59,7 @@ public interface AuthenticationServiceAsync {
 	 * 
 	 * @param req
 	 */
-	//public void requestForgotPasswordEmail(AuthenticationRequest req);
+	public void requestForgotPasswordEmail(AuthenticationRequest req, AsyncCallback<Void> callback);
 	
 	/**
 	 * resets the password for the User associated
@@ -70,24 +67,21 @@ public interface AuthenticationServiceAsync {
 	 * also authenticates the user (same as login would have done)
 	 * 
 	 * @param req
-	 * @return
 	 */
-	//public ResetPasswordResponse resetPassword(ResetPasswordRequest req);
+	public void resetPassword(ResetPasswordRequest req, AsyncCallback<ResetPasswordResponse> callback);
 
 	/**
 	 * locate a users based on parameters
 	 * 
 	 * @param params (I_TemplateParams xml String toXml fromXml)
-	 * @return
 	 */
-	//public Collection<UserRelations> findUsers(String params);
+	public void findUsers(String params, AsyncCallback<Collection<UserRelations>> callback);
 
 	/**
 	 * locate user groups based on parameters
 	 * 
 	 * @param params (I_TemplateParams xml String toXml fromXml)
-	 * @return
 	 */
-	//public Collection<UserGroup> findUserGroups(String params);
+	public void findUserGroups(String params, AsyncCallback<Collection<UserGroup>> callback);
 }
 
