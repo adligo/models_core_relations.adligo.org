@@ -7,7 +7,7 @@ import org.adligo.models.core.relations.client.UserGroup;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("UserGroupInfoService")
+@RemoteServiceRelativePath("do/UserGroupInfoService")
 public interface UserGroupInfoService extends RemoteService {
 
 	/**

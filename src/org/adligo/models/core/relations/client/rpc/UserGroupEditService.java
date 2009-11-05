@@ -6,7 +6,7 @@ import org.adligo.models.core.relations.client.rpc.transfer.SaveResponse;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("UserGroupEditService")
+@RemoteServiceRelativePath("do/UserGroupEditService")
 public interface UserGroupEditService extends RemoteService {
 
 	/**

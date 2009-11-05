@@ -7,7 +7,7 @@ import org.adligo.models.core.relations.client.UserRelations;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("UserInfoService")
+@RemoteServiceRelativePath("do/UserInfoService")
 public interface UserInfoService extends RemoteService {
 	/**
 	 * locate a users based on parameters

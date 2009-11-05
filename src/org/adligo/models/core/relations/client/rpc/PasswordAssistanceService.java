@@ -7,7 +7,7 @@ import org.adligo.models.core.relations.client.rpc.transfer.ResetPasswordRespons
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("PasswordAssistanceService")
+@RemoteServiceRelativePath("do/PasswordAssistanceService")
 public interface PasswordAssistanceService extends RemoteService {
 	/**
 	 * should send the user a email with a link 
