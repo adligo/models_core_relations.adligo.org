@@ -25,7 +25,7 @@ public interface AuthenticationService extends RemoteService {
 	public void logout();
 	
 	/**
-	 * the list of domains should come with the config
+	 * the list of DomainNames should come with the config
 	 * see the GwtCacheConstants in the gwt_util project
 	 */
 }

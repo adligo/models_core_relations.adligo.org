@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.OrganizationMutant;
@@ -76,6 +77,10 @@ public class UserRelationsMutant extends UserRelations implements I_User, Serial
 		person_mutant.setMiddle_name(middleName);
 	}
 
+	public void setDomain(DomainName domain) {
+		user_mutant.setDomain(domain);
+	}
+	
 	public void setDomain(String domain) throws InvalidParameterException {
 		user_mutant.setDomain(domain);
 	}
@@ -100,7 +105,7 @@ public class UserRelationsMutant extends UserRelations implements I_User, Serial
 		return user_mutant.getId();
 	}
 	
-	public String getDomain() {
+	public DomainName getDomain() {
 		return user_mutant.getDomain();
 	}
 }
