@@ -41,7 +41,7 @@ public class ModelsCoreConstantsSetup {
 						@Override
 						public Object invoke(Object valueObject) {
 							if (csts == null) {
-								csts = GWT.create(I_EmailValidationConstants.class);
+								csts = GWT.create(I_GwtEmailValidationConstants.class);
 							}
 							return csts;
 						}
