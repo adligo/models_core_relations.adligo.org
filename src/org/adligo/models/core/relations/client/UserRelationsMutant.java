@@ -2,9 +2,10 @@ package org.adligo.models.core.relations.client;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashSet;
 
+import org.adligo.i.util.client.ClassUtils;
 import org.adligo.models.core.client.DomainName;
+import org.adligo.models.core.client.EMail;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.OrganizationMutant;
@@ -18,25 +19,29 @@ public class UserRelationsMutant extends UserRelations implements I_User, Serial
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	UserMutant user_mutant = new UserMutant();
-	PersonMutant person_mutant = new PersonMutant();
-	OrganizationMutant org_mutant = new OrganizationMutant();
+	UserMutant user_mutant;
+	PersonMutant person_mutant;
+	OrganizationMutant org_mutant;
 
 	private void init() {
-		roles = new HashSet<String>();
-		groups = new HashSet<String>();
 		user = user_mutant;
 		person = person_mutant;
 		org = org_mutant;
 	}
 	
 	public UserRelationsMutant() {
+		user_mutant = new UserMutant();
+		person_mutant = new PersonMutant();
+		org_mutant = new OrganizationMutant();
 		init();
 	}
 
 	public UserRelationsMutant(UserRelations p) throws InvalidParameterException {
 		super(p);
 		init();
+		user_mutant = new UserMutant(p.getUser());
+		person_mutant = new PersonMutant(p.getPerson());
+		org_mutant = new OrganizationMutant(p.getOrg());
 	}
 	
 	public void setUserId(StorageIdentifier id) throws InvalidParameterException {
@@ -77,7 +82,15 @@ public class UserRelationsMutant extends UserRelations implements I_User, Serial
 		person_mutant.setMiddle_name(middleName);
 	}
 
-	public void setDomain(DomainName domain) {
+	public void setEmail(EMail email) throws InvalidParameterException {
+		user_mutant.setEmail(email);
+	}
+	
+	public void setEmail(String email) throws InvalidParameterException {
+		user_mutant.setEmail(email);
+	}
+	
+	public void setDomain(DomainName domain) throws InvalidParameterException  {
 		user_mutant.setDomain(domain);
 	}
 	
@@ -107,5 +120,12 @@ public class UserRelationsMutant extends UserRelations implements I_User, Serial
 	
 	public DomainName getDomain() {
 		return user_mutant.getDomain();
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(ClassUtils.getClassShortName(UserRelations.class));
+		appendFields(sb);
+		return sb.toString();
 	}
 }
