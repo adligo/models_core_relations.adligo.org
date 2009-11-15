@@ -34,18 +34,7 @@ public class ModelsCoreConstantsSetup {
 							return csts;
 						}
 					});
-			ConstantsFactory.INSTANCE.put(I_UserValidationConstants.class,
-					new I_Invoker() {
-						I_UserValidationConstants csts;
-						
-						@Override
-						public Object invoke(Object valueObject) {
-							if (csts == null) {
-								csts = GWT.create(I_GwtUserValidationConstants.class);
-							}
-							return csts;
-						}
-					});
+			
 			ConstantsFactory.INSTANCE.put(I_EmailValidationConstants.class,
 					new I_Invoker() {
 						I_EmailValidationConstants csts;
@@ -54,6 +43,54 @@ public class ModelsCoreConstantsSetup {
 						public Object invoke(Object valueObject) {
 							if (csts == null) {
 								csts = GWT.create(I_GwtEmailValidationConstants.class);
+							}
+							return csts;
+						}
+					});
+			ConstantsFactory.INSTANCE.put(I_OrganizationValidationConstants.class,
+					new I_Invoker() {
+						I_OrganizationValidationConstants csts;
+						
+						@Override
+						public Object invoke(Object valueObject) {
+							if (csts == null) {
+								csts = GWT.create(I_GwtOrganizationsValidationConstants.class);
+							}
+							return csts;
+						}
+					});
+			ConstantsFactory.INSTANCE.put(I_PersonValidationConstants.class,
+					new I_Invoker() {
+						I_PersonValidationConstants csts;
+						
+						@Override
+						public Object invoke(Object valueObject) {
+							if (csts == null) {
+								csts = GWT.create(I_GwtPersonValidationConstants.class);
+							}
+							return csts;
+						}
+					});
+			ConstantsFactory.INSTANCE.put(I_PhoneNumberValidationConstants.class,
+					new I_Invoker() {
+						I_PhoneNumberValidationConstants csts;
+						
+						@Override
+						public Object invoke(Object valueObject) {
+							if (csts == null) {
+								csts = GWT.create(I_GwtPhoneNumberValidationConstants.class);
+							}
+							return csts;
+						}
+					});
+			ConstantsFactory.INSTANCE.put(I_UserValidationConstants.class,
+					new I_Invoker() {
+						I_UserValidationConstants csts;
+						
+						@Override
+						public Object invoke(Object valueObject) {
+							if (csts == null) {
+								csts = GWT.create(I_GwtUserValidationConstants.class);
 							}
 							return csts;
 						}

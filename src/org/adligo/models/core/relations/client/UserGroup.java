@@ -4,20 +4,22 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.Set;
 
+import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.Organization;
 
-public class UserGroup extends Organization implements Serializable {
+public class UserGroup implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	protected Organization org;
 	protected Set<String> roles;
 	
 	protected UserGroup() {}
 	
-	public UserGroup(UserGroup group) {
-		super(group);
+	public UserGroup(UserGroup group) throws InvalidParameterException {
+		org = new Organization(group.org);
 		roles = group.roles;
 	}
 	

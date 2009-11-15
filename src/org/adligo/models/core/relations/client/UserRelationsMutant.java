@@ -73,7 +73,7 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 		person_mutant.setFirst_name(firstName);
 	}
 
-	public void setLast_name(String lastName) {
+	public void setLast_name(String lastName) throws InvalidParameterException {
 		person_mutant.setLast_name(lastName);
 	}
 
