@@ -1,13 +1,12 @@
 package org.adligo.models.core.relations.client;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
 import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.InvalidParameterException;
 
-public class UserGroupMutant extends UserGroup implements Serializable {
+public class UserGroupMutant extends UserGroup {
 
 	/**
 	 * 

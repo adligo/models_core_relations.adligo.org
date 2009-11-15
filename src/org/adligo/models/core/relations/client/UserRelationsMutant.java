@@ -1,6 +1,5 @@
 package org.adligo.models.core.relations.client;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import org.adligo.i.util.client.ClassUtils;
@@ -13,7 +12,7 @@ import org.adligo.models.core.client.PersonMutant;
 import org.adligo.models.core.client.StorageIdentifier;
 import org.adligo.models.core.client.UserMutant;
 
-public class UserRelationsMutant extends UserRelations implements I_User, Serializable {
+public class UserRelationsMutant extends UserRelations implements I_User {
 
 	/**
 	 * 

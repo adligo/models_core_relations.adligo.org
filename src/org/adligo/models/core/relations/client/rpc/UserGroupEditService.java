@@ -1,6 +1,6 @@
 package org.adligo.models.core.relations.client.rpc;
 
-import org.adligo.models.core.relations.client.UserGroupMutant;
+import org.adligo.models.core.relations.client.UserGroup;
 import org.adligo.models.core.relations.client.rpc.transfer.SaveResponse;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -16,5 +16,5 @@ public interface UserGroupEditService extends RemoteService {
 	 * @param relations
 	 * @return
 	 */
-	public SaveResponse saveGroup(UserGroupMutant group);
+	public SaveResponse saveGroup(UserGroup group);
 }

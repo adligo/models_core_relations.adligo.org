@@ -10,6 +10,18 @@ public class ModelsCoreConstantsSetup {
 	public static void init() {
 		if (!init) {
 			init = true;
+			ConstantsFactory.INSTANCE.put(I_AddressValidationConstants.class,
+					new I_Invoker() {
+						I_GwtAddressValidationConstants csts;
+						
+						@Override
+						public Object invoke(Object valueObject) {
+							if (csts == null) {
+								csts = GWT.create(I_GwtAddressValidationConstants.class);
+							}
+							return csts;
+						}
+					});
 			ConstantsFactory.INSTANCE.put(I_DomainNameValidationConstants.class,
 					new I_Invoker() {
 						I_DomainNameValidationConstants csts;

@@ -1,6 +1,6 @@
 package org.adligo.models.core.relations.client.rpc;
 
-import org.adligo.models.core.relations.client.UserGroupMutant;
+import org.adligo.models.core.relations.client.UserGroup;
 import org.adligo.models.core.relations.client.rpc.transfer.SaveResponse;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -13,5 +13,5 @@ public interface UserGroupEditServiceAsync {
 	 * 
 	 * @param relations
 	 */
-	public void saveGroup(UserGroupMutant group, AsyncCallback<SaveResponse> callback);
+	public void saveGroup(UserGroup group, AsyncCallback<SaveResponse> callback);
 }
