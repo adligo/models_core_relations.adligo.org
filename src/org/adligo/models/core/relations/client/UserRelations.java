@@ -6,23 +6,31 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.i.util.client.ClassUtils;
+import org.adligo.i.util.client.I_Serializable;
+import org.adligo.models.core.client.DomainName;
+import org.adligo.models.core.client.EMail;
 import org.adligo.models.core.client.I_User;
+import org.adligo.models.core.client.I_Validateable;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
+import org.adligo.models.core.client.StorageIdentifier;
 import org.adligo.models.core.client.User;
-import org.adligo.models.core.client.UserMutant;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * may be used a surrogate for a LDAP i_netOrgUser
  * @author scott
  *
  */
-public class UserRelations implements I_User, Serializable {
+public class UserRelations implements I_User, I_Serializable, Serializable, I_Validateable {
+	public static final String USER_NAME_ALREADY_EXISTS = "User name exists.";
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * the list of roles in all of the groups
 	 */
@@ -39,8 +47,16 @@ public class UserRelations implements I_User, Serializable {
 	protected Person person;
 	protected Organization org;
 	
-	
-	protected UserRelations() {}
+	/**
+	 * for gwt serialization
+	 */
+	public UserRelations() {}
+
+	public UserRelations(User p) throws InvalidParameterException {
+		if (p != null) {
+			user = new User(p);
+		}
+	}
 	
 	public UserRelations(UserRelations p) throws InvalidParameterException {
 		if (p.user != null) {
@@ -70,6 +86,13 @@ public class UserRelations implements I_User, Serializable {
 		return "";
 	}
 
+	public StorageIdentifier getId() {
+		if (user != null) {
+			return user.getId();
+		}
+		return null;
+	}
+	
 	public boolean isUserInRole(String role) {
 		if (roles != null) {
 			if (role.contains(role)) {
@@ -125,4 +148,34 @@ public class UserRelations implements I_User, Serializable {
 		sb.append(groups.size());
 		sb.append("]");
 	}
+
+	@Override
+	public boolean isValid() {
+		if (user == null) {
+			return false;
+		}
+		if (!user.isValid()) {
+			return false;
+		}
+		return true;
+	}
+
+	public DomainName getDomain() {
+		if (user == null) {
+			return null;
+		}
+		return user.getDomain();
+	}
+
+	public StorageIdentifier generate() throws InvalidParameterException {
+		if (user == null) {
+			return null;
+		}
+		return user.generate();
+	}
+
+	public EMail getEmail() {
+		return user.getEmail();
+	}
+
 }

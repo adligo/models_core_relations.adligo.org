@@ -1,13 +1,9 @@
 package org.adligo.models.core.relations.client.rpc.transfer;
 
-import java.io.Serializable;
-
+import org.adligo.i.util.client.I_Serializable;
 import org.adligo.models.core.client.I_User;
 
-public class ResetPasswordResponse implements Serializable {
-	/**
-	 * 
-	 */
+public class ResetPasswordResponse implements I_Serializable {
 	private static final long serialVersionUID = 1L;
 	private SaveResponse saveResponse;
 	private I_User user;

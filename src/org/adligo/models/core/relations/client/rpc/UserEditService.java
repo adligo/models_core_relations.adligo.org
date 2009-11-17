@@ -1,6 +1,7 @@
 package org.adligo.models.core.relations.client.rpc;
 
 import org.adligo.models.core.relations.client.UserRelations;
+import org.adligo.models.core.relations.client.rpc.transfer.SaveRequest;
 import org.adligo.models.core.relations.client.rpc.transfer.SaveResponse;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -19,5 +20,5 @@ public interface UserEditService extends RemoteService {
 	 * @param relations
 	 * @return
 	 */
-	public SaveResponse saveUser(UserRelations relations);
+	public SaveResponse saveUser(SaveRequest<UserRelations> relations);
 }
