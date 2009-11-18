@@ -2,7 +2,6 @@ package org.adligo.models.core.relations.client;
 
 import java.util.Collection;
 
-import org.adligo.i.util.client.ClassUtils;
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMail;
 import org.adligo.models.core.client.I_User;
@@ -10,7 +9,9 @@ import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.OrganizationMutant;
 import org.adligo.models.core.client.PersonMutant;
 import org.adligo.models.core.client.StorageIdentifier;
+import org.adligo.models.core.client.User;
 import org.adligo.models.core.client.UserMutant;
+
 
 public class UserRelationsMutant extends UserRelations implements I_User {
 
@@ -21,82 +22,74 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 	UserMutant user_mutant;
 	PersonMutant person_mutant;
 	OrganizationMutant org_mutant;
-
-	private void init() {
-		user = user_mutant;
-		person = person_mutant;
-		org = org_mutant;
-	}
 	
 	public UserRelationsMutant() {
 		user_mutant = new UserMutant();
-		person_mutant = new PersonMutant();
-		org_mutant = new OrganizationMutant();
-		init();
+		//copy to super for gwt serialization
+		user = user_mutant;
 	}
 
+	public UserRelationsMutant(User user) throws InvalidParameterException {
+		user_mutant = new UserMutant(user);
+		//copy to super for gwt serialization
+		user = user_mutant;
+	}
+	
 	public UserRelationsMutant(UserRelations p) throws InvalidParameterException {
 		super(p);
-		init();
+		user = user_mutant;
 		user_mutant = new UserMutant(p.getUser());
-		person_mutant = new PersonMutant(p.getPerson());
-		org_mutant = new OrganizationMutant(p.getOrg());
-	}
-	
-	public void setUserId(StorageIdentifier id) throws InvalidParameterException {
-		user_mutant.setId(id);
-	}
-	
-	public void setPersonId(StorageIdentifier id) throws InvalidParameterException {
-		person_mutant.setId(id);
+		if (p.getPerson() != null) {
+			person_mutant = new PersonMutant(p.getPerson());
+			//copy to super for gwt serialization
+			person = person_mutant;
+		}
+		if (p.getOrg() != null) {
+			org_mutant = new OrganizationMutant(p.getOrg());
+			//copy to super for gwt serialization
+			org = org_mutant;
+		}
 	}
 	
 	public void addAllRoles(Collection<String> p_roles) throws InvalidParameterException {
-		if (p_roles.contains("")) {
-			throw new InvalidParameterException("Can't add a empty role to UserRelationsMutant.", "addAllRoles");
-		} else if (p_roles.contains(null)) {
-			throw new InvalidParameterException("Can't add a null role to UserRelationsMutant.", "addAllRoles");
-		}
-		roles.addAll(p_roles);
+		super.addAllRolesP(p_roles);
 	}
 	
 	public void addAllGroups(Collection<String> p_groups) throws InvalidParameterException  {
-		if (p_groups.contains("")) {
-			throw new InvalidParameterException("Can't add a empty group to UserRelationsMutant.", "addAllGroups");
-		} else if (p_groups.contains(null)) {
-			throw new InvalidParameterException("Can't add a null group to UserRelationsMutant.", "addAllGroups");
-		}
-		groups.addAll(p_groups);
-	}
-
-	public void setFirst_name(String firstName) {
-		person_mutant.setFirst_name(firstName);
-	}
-
-	public void setLast_name(String lastName) throws InvalidParameterException {
-		person_mutant.setLast_name(lastName);
-	}
-
-	public void setMiddle_name(String middleName) {
-		person_mutant.setMiddle_name(middleName);
-	}
-
-	public void setEmail(EMail email) throws InvalidParameterException {
-		user_mutant.setEmail(email);
+		super.addAllGroupsP(p_groups);
 	}
 	
-	public void setEmail(String email) throws InvalidParameterException {
-		user_mutant.setEmail(email);
+	public void addRoles(String p_role) throws InvalidParameterException {
+		super.addRolesP(p_role);
 	}
 	
-	public void setDomain(DomainName domain) throws InvalidParameterException  {
-		user_mutant.setDomain(domain);
+	public void addGroup(String p_group) throws InvalidParameterException  {
+		super.addGroupP(p_group);
+	}
+	
+	/*
+	 * provide delegate methods only for the main User object
+	 */
+	public void setUserId(StorageIdentifier id) throws InvalidParameterException {
+		user_mutant.setId(id);
 	}
 	
 	public void setDomain(String domain) throws InvalidParameterException {
 		user_mutant.setDomain(domain);
 	}
+	
+	public void setDomain(DomainName domain) throws InvalidParameterException {
+		user_mutant.setDomain(domain);
+	}
+	
+	public void setEmail(EMail email) throws InvalidParameterException {
+		user_mutant.setEmail(email);
+	}
 
+	public void setEmail(String email) throws InvalidParameterException {
+		user_mutant.setEmail(email);
+	}
+	
 	public void setName(String name) throws InvalidParameterException {
 		user_mutant.setName(name);
 	}
@@ -104,27 +97,24 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 	public void setPassword(String password) throws InvalidParameterException {
 		user_mutant.setPassword(password);
 	}
-	
-	public void setOrganizationName(String name) throws InvalidParameterException {
-		org_mutant.setName(name);
+
+	public PersonMutant getPerson_mutant() {
+		return person_mutant;
 	}
-	
-	public void setOrganizationId(StorageIdentifier id) throws InvalidParameterException {
-		org_mutant.setId(id);
+
+	public void setPerson_mutant(PersonMutant personMutant) {
+		person_mutant = personMutant;
+		//copy to super for gwt serialization
+		person = person_mutant;
 	}
-	
-	public StorageIdentifier getId() {
-		return user_mutant.getId();
+
+	public OrganizationMutant getOrg_mutant() {
+		return org_mutant;
 	}
-	
-	public DomainName getDomain() {
-		return user_mutant.getDomain();
-	}
-	
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(ClassUtils.getClassShortName(UserRelations.class));
-		appendFields(sb);
-		return sb.toString();
+
+	public void setOrg_mutant(OrganizationMutant orgMutant) {
+		org_mutant = orgMutant;
+		//copy to super for gwt serialization
+		org = org_mutant;
 	}
 }

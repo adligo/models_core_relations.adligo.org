@@ -5,7 +5,7 @@ import org.adligo.i.util.client.I_Serializable;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class SaveRequest<T extends IsSerializable> implements I_Serializable {
+public class SaveRequest<T extends I_Serializable> implements I_Serializable {
 	private static final long serialVersionUID = 1L;
 	private T saveObj;
 	private String eventSource;
