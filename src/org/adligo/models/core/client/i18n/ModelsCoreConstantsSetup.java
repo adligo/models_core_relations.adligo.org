@@ -28,19 +28,6 @@ public class ModelsCoreConstantsSetup {
 							return csts;
 						}
 					});
-			I18nConstantsFactory.INSTANCE.setDefalutFactory(new I_Invoker() {
-				private Map<Class<?>,Constants> map = new HashMap<Class<?>,Constants>();
-				
-				@Override
-				public Object invoke(Object valueObject) {
-					Constants obj = map.get(valueObject);
-					if (obj == null) {
-						obj = (Constants) GWT.create((Class<?>) valueObject);
-						map.put((Class<?>) valueObject, obj);
-					}
-					return obj;
-				}
-			});
 		}
 	}
 	
