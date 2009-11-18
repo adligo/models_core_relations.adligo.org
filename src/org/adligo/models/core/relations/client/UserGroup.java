@@ -5,23 +5,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.Registry;
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ModelsCoreValidationConstantsObtainer;
+import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.NamedId;
 import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.StorageIdentifier;
 
 
 public class UserGroup implements I_Serializable {
-	private static final I_Invoker CONSTANTS_FACTORY = 
-		Registry.getInvoker(InvokerNames.CONSTANTS_FACTORY);
-	
+	public static final String USER_GROUP = "UserGroup";
 	public static final String ADD_ROLE = "addRole";
 	public static final String ADD_ALL_ROLES = "addAllRoles";
 	/**
@@ -37,9 +32,15 @@ public class UserGroup implements I_Serializable {
 	public UserGroup() {}
 	
 	public UserGroup(UserGroup group) throws InvalidParameterException {
-		org = new Organization(group.org);
-		if (group.roles != null) {
-			addAllRolesP(group.roles);
+		try {
+			org = new Organization(group.org);
+			if (group.roles != null) {
+				addAllRolesP(group.roles);
+			}
+		} catch (InvalidParameterException  x) {
+			InvalidParameterException ipe = new InvalidParameterException(x.getMessage(), USER_GROUP);
+			ipe.initCause(x);
+			throw ipe;
 		}
 	}
 	
@@ -56,7 +57,7 @@ public class UserGroup implements I_Serializable {
 	
 	protected void addAllRolesP(Collection<String> p_roles) throws InvalidParameterException {
 		if (p_roles.contains("") || p_roles.contains(null)) {
-			throw new InvalidParameterException(ModelsCoreValidationConstantsObtainer.getConstants()
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserGroupEmptyRoleError(), ADD_ALL_ROLES);
 		}
 		getRolesP().addAll(p_roles);
@@ -64,7 +65,7 @@ public class UserGroup implements I_Serializable {
 	
 	protected void addRoleP(String p_role) throws InvalidParameterException {
 		if (StringUtils.isEmpty(p_role)) {
-			throw new InvalidParameterException(ModelsCoreValidationConstantsObtainer.getConstants()
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserGroupEmptyRoleError(), ADD_ROLE);
 		}
 		getRolesP().add(p_role);

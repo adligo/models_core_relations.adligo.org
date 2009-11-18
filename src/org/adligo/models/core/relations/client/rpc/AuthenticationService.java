@@ -1,7 +1,7 @@
 package org.adligo.models.core.relations.client.rpc;
 
-import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.relations.client.rpc.transfer.AuthenticationRequest;
+import org.adligo.models.core.relations.client.rpc.transfer.AuthenticationResponse;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -16,7 +16,7 @@ public interface AuthenticationService extends RemoteService {
 	 * 
 	 * @return
 	 */
-	public I_User login(AuthenticationRequest req);
+	public AuthenticationResponse login(AuthenticationRequest req);
 	
 	/**
 	 * logs the user out of the system

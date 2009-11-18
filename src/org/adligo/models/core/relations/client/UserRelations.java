@@ -6,9 +6,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.i.adi.client.InvokerNames;
-import org.adligo.i.adi.client.Registry;
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 import org.adligo.i.util.client.StringUtils;
@@ -18,7 +15,7 @@ import org.adligo.models.core.client.I_NamedId;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.I_Validateable;
 import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ModelsCoreValidationConstantsObtainer;
+import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
 import org.adligo.models.core.client.StorageIdentifier;
@@ -34,8 +31,6 @@ import org.adligo.models.core.client.User;
  *
  */
 public class UserRelations implements I_User, I_NamedId, I_Serializable, Serializable, I_Validateable {
-	private static final I_Invoker CONSTANTS_FACTORY = 
-		Registry.getInvoker(InvokerNames.CONSTANTS_FACTORY);
 	
 	public static final String ADD_GROUP = "addGroup";
 	public static final String ADD_ROLE = "addRole";
@@ -167,7 +162,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 
 	protected void addAllRolesP(Collection<String> p_roles) throws InvalidParameterException {
 		if (p_roles.contains("") || p_roles.contains(null)) {
-			throw new InvalidParameterException(ModelsCoreValidationConstantsObtainer.getConstants()
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyRoleError(), ADD_ALL_ROLES);
 		}
 		getRolesP().addAll(p_roles);
@@ -175,7 +170,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	
 	protected void addAllGroupsP(Collection<String> p_groups) throws InvalidParameterException  {
 		if (p_groups.contains("") || p_groups.contains(null)) {
-			throw new InvalidParameterException(ModelsCoreValidationConstantsObtainer.getConstants()
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyGroupError(), ADD_ALL_GROUPS);
 		}
 		getGroupsP().addAll(p_groups);
@@ -183,7 +178,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	
 	protected void addRolesP(String p_role) throws InvalidParameterException {
 		if (StringUtils.isEmpty(p_role)) {
-			throw new InvalidParameterException(ModelsCoreValidationConstantsObtainer.getConstants()
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyRoleError(), ADD_ROLE);
 		}
 		getRolesP().add(p_role);
@@ -191,7 +186,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	
 	protected void addGroupP(String p_group) throws InvalidParameterException  {
 		if (StringUtils.isEmpty(p_group)) {
-			throw new InvalidParameterException(ModelsCoreValidationConstantsObtainer.getConstants()
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyGroupError(), ADD_GROUP);
 		}
 		getGroupsP().add(p_group);

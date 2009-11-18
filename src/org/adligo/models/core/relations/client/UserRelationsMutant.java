@@ -59,7 +59,7 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 		super.addAllGroupsP(p_groups);
 	}
 	
-	public void addRoles(String p_role) throws InvalidParameterException {
+	public void addRole(String p_role) throws InvalidParameterException {
 		super.addRolesP(p_role);
 	}
 	
@@ -70,7 +70,7 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 	/*
 	 * provide delegate methods only for the main User object
 	 */
-	public void setUserId(StorageIdentifier id) throws InvalidParameterException {
+	public void setId(StorageIdentifier id) throws InvalidParameterException {
 		user_mutant.setId(id);
 	}
 	
