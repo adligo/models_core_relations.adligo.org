@@ -73,6 +73,31 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	 * @param p
 	 * @throws InvalidParameterException
 	 */
+	public UserRelations(UserRelationsMutant p) throws InvalidParameterException {
+		try {
+			user = new User(p.getUserMutant());
+			if (p.getOrg_mutant() != null) {
+				org = new Organization(p.getOrg_mutant());
+			}
+			if (p.getPerson_mutant() != null) {
+				person = new Person(p.getPerson_mutant());
+			}
+			setGroupsRolesFromOther(p.getWrapped());
+		} catch (InvalidParameterException ipe) {
+			InvalidParameterException x = new InvalidParameterException(
+					ipe.getMessage(),USER_RELATIONS);
+			x.initCause(ipe);
+			throw x;
+		}
+	}
+	
+	/**
+	 * constructor for creating a new user
+	 * when the person or organization is not used
+	 * 
+	 * @param p
+	 * @throws InvalidParameterException
+	 */
 	public UserRelations(User p) throws InvalidParameterException {
 		try {
 			user = new User(p);
@@ -117,23 +142,37 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 			if (p.user != null) {
 				user = new User(p.user);
 			}
-			if (p.org != null) {
-				org = new Organization(p.org);
-			}
-			if (p.roles != null) {
-				addAllRolesP(p.roles);
-			}
-			if (p.groups != null) {
-				addAllGroupsP(p.groups);
-			}
-			if (p.person != null) {
-				person = new Person(p.person);
-			}
+			setRelationsFromOther(p);
 		} catch (InvalidParameterException ipe) {
 			InvalidParameterException x = new InvalidParameterException(
 					ipe.getMessage(),USER_RELATIONS);
 			x.initCause(ipe);
 			throw x;
+		}
+	}
+
+	private void setRelationsFromOther(UserRelations p)
+			throws InvalidParameterException {
+		if (p.org != null) {
+			org = new Organization(p.org);
+		}
+		setGroupsRolesFromOther(p);
+		if (p.person != null) {
+			person = new Person(p.person);
+		}
+	}
+
+	private void setGroupsRolesFromOther(UserRelations p)
+			throws InvalidParameterException {
+		if (p.roles != null) {
+			if (p.roles.size() >= 1) {
+				addAllRolesP(p.roles);
+			}
+		}
+		if (p.groups != null) {
+			if (p.groups.size() >= 1) {
+				addAllGroupsP(p.groups);
+			}
 		}
 	}
 	
@@ -192,11 +231,19 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		getGroupsP().add(p_group);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Set<String> getRoles() {
+		if (roles == null) {
+			return Collections.EMPTY_SET;
+		}
 		return Collections.unmodifiableSet(getRolesP());
 	}
 
+	@SuppressWarnings("unchecked")
 	public Set<String> getGroups() {
+		if (groups == null) {
+			return Collections.EMPTY_SET;
+		}
 		return Collections.unmodifiableSet(getGroupsP());
 	}
 
@@ -211,7 +258,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		if (groups == null) {
 			groups = new HashSet<String>();
 		}
-		return roles;
+		return groups;
 	}
 	
 	public Person getPerson() {

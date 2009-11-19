@@ -1,6 +1,7 @@
 package org.adligo.models.core.relations.client;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMail;
@@ -13,58 +14,45 @@ import org.adligo.models.core.client.User;
 import org.adligo.models.core.client.UserMutant;
 
 
-public class UserRelationsMutant extends UserRelations implements I_User {
+public class UserRelationsMutant {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	UserMutant user_mutant;
-	PersonMutant person_mutant;
-	OrganizationMutant org_mutant;
+	private UserRelations wrapped = new UserRelations();
+	private UserMutant user_mutant;
+	private PersonMutant person_mutant;
+	private OrganizationMutant org_mutant;
 	
 	public UserRelationsMutant() {
 		user_mutant = new UserMutant();
-		//copy to super for gwt serialization
-		user = user_mutant;
 	}
 
 	public UserRelationsMutant(User user) throws InvalidParameterException {
 		user_mutant = new UserMutant(user);
-		//copy to super for gwt serialization
-		user = user_mutant;
 	}
 	
 	public UserRelationsMutant(UserRelations p) throws InvalidParameterException {
-		super(p);
-		user = user_mutant;
 		user_mutant = new UserMutant(p.getUser());
 		if (p.getPerson() != null) {
 			person_mutant = new PersonMutant(p.getPerson());
-			//copy to super for gwt serialization
-			person = person_mutant;
 		}
 		if (p.getOrg() != null) {
 			org_mutant = new OrganizationMutant(p.getOrg());
-			//copy to super for gwt serialization
-			org = org_mutant;
 		}
 	}
-	
+
 	public void addAllRoles(Collection<String> p_roles) throws InvalidParameterException {
-		super.addAllRolesP(p_roles);
+		wrapped.addAllRolesP(p_roles);
 	}
 	
 	public void addAllGroups(Collection<String> p_groups) throws InvalidParameterException  {
-		super.addAllGroupsP(p_groups);
+		wrapped.addAllGroupsP(p_groups);
 	}
 	
 	public void addRole(String p_role) throws InvalidParameterException {
-		super.addRolesP(p_role);
+		wrapped.addRolesP(p_role);
 	}
 	
 	public void addGroup(String p_group) throws InvalidParameterException  {
-		super.addGroupP(p_group);
+		wrapped.addGroupP(p_group);
 	}
 	
 	/*
@@ -104,8 +92,6 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 
 	public void setPerson_mutant(PersonMutant personMutant) {
 		person_mutant = personMutant;
-		//copy to super for gwt serialization
-		person = person_mutant;
 	}
 
 	public OrganizationMutant getOrg_mutant() {
@@ -114,7 +100,51 @@ public class UserRelationsMutant extends UserRelations implements I_User {
 
 	public void setOrg_mutant(OrganizationMutant orgMutant) {
 		org_mutant = orgMutant;
-		//copy to super for gwt serialization
-		org = org_mutant;
 	}
+
+	protected UserMutant getUserMutant() {
+		return user_mutant;
+	}
+
+	protected UserRelations getWrapped() {
+		return wrapped;
+	}
+
+	public String getDn() throws InvalidParameterException {
+		return user_mutant.getDn();
+	}
+
+	public DomainName getDomain() {
+		return user_mutant.getDomain();
+	}
+
+	public EMail getEmail() {
+		return user_mutant.getEmail();
+	}
+
+	public StorageIdentifier getId() {
+		return user_mutant.getId();
+	}
+
+	public String getName() {
+		return user_mutant.getName();
+	}
+
+	public String getPassword() {
+		return user_mutant.getPassword();
+	}
+
+	public String getUserName() {
+		return wrapped.getUserName();
+	}
+
+	public boolean isUserInRole(String role) {
+		return wrapped.isUserInRole(role);
+	}
+
+	public Set<String> getGroups() {
+		return wrapped.getGroups();
+	}
+	
+	
 }
