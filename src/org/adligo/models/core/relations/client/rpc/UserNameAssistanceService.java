@@ -1,12 +1,12 @@
 package org.adligo.models.core.relations.client.rpc;
 
-import org.adligo.models.core.client.EMail;
 import org.adligo.models.core.relations.client.rpc.transfer.EmailAssistanceReponse;
+import org.adligo.models.core.relations.client.rpc.transfer.EmailAssistanceRequest;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("do/UserInfoService")
+@RemoteServiceRelativePath("do/UserNameAssistanceService")
 public interface UserNameAssistanceService extends RemoteService {
 	/**
 	 * 
@@ -14,5 +14,5 @@ public interface UserNameAssistanceService extends RemoteService {
 	 * @return if successfully sent email,
 	 *  	or the reason why not in English
 	 */
-	public EmailAssistanceReponse requestUserNameEmail(EMail email);
+	public EmailAssistanceReponse requestUserNameEmail(EmailAssistanceRequest email);
 }

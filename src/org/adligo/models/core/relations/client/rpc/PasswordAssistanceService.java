@@ -2,6 +2,7 @@ package org.adligo.models.core.relations.client.rpc;
 
 import org.adligo.models.core.relations.client.rpc.transfer.AuthenticationRequest;
 import org.adligo.models.core.relations.client.rpc.transfer.EmailAssistanceReponse;
+import org.adligo.models.core.relations.client.rpc.transfer.EmailAssistanceRequest;
 import org.adligo.models.core.relations.client.rpc.transfer.ResetPasswordRequest;
 import org.adligo.models.core.relations.client.rpc.transfer.ResetPasswordResponse;
 
@@ -18,7 +19,7 @@ public interface PasswordAssistanceService extends RemoteService {
 	 * 
 	 * @param req
 	 */
-	public EmailAssistanceReponse requestForgotPasswordEmail(AuthenticationRequest req);
+	public EmailAssistanceReponse requestForgotPasswordEmail(EmailAssistanceRequest req);
 	
 	/**
 	 * resets the password for the User associated
