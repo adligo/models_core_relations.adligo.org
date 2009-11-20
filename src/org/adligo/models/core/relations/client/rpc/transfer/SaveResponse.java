@@ -3,14 +3,14 @@ package org.adligo.models.core.relations.client.rpc.transfer;
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 
-public class SaveResponse implements I_Serializable {
+public class SaveResponse<T extends Enum<?>> implements I_Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean successful;
-	private String failureCause;
+	private T failureCause;
 	private String eventSource;
 	
 	public boolean isSuccessful() {
@@ -21,11 +21,11 @@ public class SaveResponse implements I_Serializable {
 		this.successful = successful;
 	}
 
-	public String getFailureCause() {
+	public T getFailureCause() {
 		return failureCause;
 	}
 
-	public void setFailureCause(String failureCause) {
+	public void setFailureCause(T failureCause) {
 		this.failureCause = failureCause;
 	}
 

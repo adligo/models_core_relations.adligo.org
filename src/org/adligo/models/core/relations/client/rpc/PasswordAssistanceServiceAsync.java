@@ -1,6 +1,7 @@
 package org.adligo.models.core.relations.client.rpc;
 
 import org.adligo.models.core.relations.client.rpc.transfer.AuthenticationRequest;
+import org.adligo.models.core.relations.client.rpc.transfer.EmailAssistanceReponse;
 import org.adligo.models.core.relations.client.rpc.transfer.ResetPasswordRequest;
 import org.adligo.models.core.relations.client.rpc.transfer.ResetPasswordResponse;
 
@@ -15,7 +16,7 @@ public interface PasswordAssistanceServiceAsync {
 	 * 
 	 * @param req
 	 */
-	public void requestForgotPasswordEmail(AuthenticationRequest req, AsyncCallback<Void> callback);
+	public void requestForgotPasswordEmail(AuthenticationRequest req, AsyncCallback<EmailAssistanceReponse> callback);
 	
 	/**
 	 * resets the password for the User associated

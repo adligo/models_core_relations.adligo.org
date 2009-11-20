@@ -5,18 +5,22 @@ import org.adligo.models.core.client.User;
 
 public class ResetPasswordResponse implements I_Serializable {
 	private static final long serialVersionUID = 1L;
-	private SaveResponse saveResponse;
+	
+	private SaveResponse<ResetPasswordFailureReasons> saveResponse;
 	private User user;
 	
-	public SaveResponse getSaveResponse() {
+	public SaveResponse<ResetPasswordFailureReasons> getSaveResponse() {
 		return saveResponse;
 	}
+	
 	public User getUser() {
 		return user;
 	}
-	public void setSaveResponse(SaveResponse saveResponse) {
+	
+	public void setSaveResponse(SaveResponse<ResetPasswordFailureReasons> saveResponse) {
 		this.saveResponse = saveResponse;
 	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
