@@ -8,14 +8,14 @@ import java.util.Set;
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 import org.adligo.i.util.client.StringUtils;
+import org.adligo.models.core.client.I_NamedId;
+import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.client.NamedId;
 import org.adligo.models.core.client.Organization;
-import org.adligo.models.core.client.StorageIdentifier;
 
 
-public class UserGroup implements I_Serializable {
+public class UserGroup implements I_Serializable, I_UserGroup {
 	public static final String USER_GROUP = "UserGroup";
 	public static final String ADD_ROLE = "addRole";
 	public static final String ADD_ALL_ROLES = "addAllRoles";
@@ -23,19 +23,21 @@ public class UserGroup implements I_Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected Organization org;
-	protected Set<String> roles;
+	private Organization org;
+	private Set<String> roles;
 	
 	/**
 	 * for gwt serialization
 	 */
 	public UserGroup() {}
 	
-	public UserGroup(UserGroup group) throws InvalidParameterException {
+	public UserGroup(I_UserGroup group) throws InvalidParameterException {
 		try {
-			org = new Organization(group.org);
-			if (group.roles != null) {
-				addAllRolesP(group.roles);
+			org = new Organization(group);
+			if (group.getRoles() != null) {
+				if (group.getRoles().size() >= 1) {
+					addAllRolesP(group.getRoles());
+				}
 			}
 		} catch (InvalidParameterException  x) {
 			InvalidParameterException ipe = new InvalidParameterException(x.getMessage(), USER_GROUP);
@@ -44,6 +46,9 @@ public class UserGroup implements I_Serializable {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.adligo.models.core.relations.client.I_UserGroup#getRoles()
+	 */
 	public Set<String> getRoles() {
 		return Collections.unmodifiableSet(getRolesP());
 	}
@@ -55,7 +60,7 @@ public class UserGroup implements I_Serializable {
 		return roles;
 	}
 	
-	protected void addAllRolesP(Collection<String> p_roles) throws InvalidParameterException {
+	void addAllRolesP(Collection<String> p_roles) throws InvalidParameterException {
 		if (p_roles.contains("") || p_roles.contains(null)) {
 			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserGroupEmptyRoleError(), ADD_ALL_ROLES);
@@ -63,7 +68,7 @@ public class UserGroup implements I_Serializable {
 		getRolesP().addAll(p_roles);
 	}
 	
-	protected void addRoleP(String p_role) throws InvalidParameterException {
+	void addRoleP(String p_role) throws InvalidParameterException {
 		if (StringUtils.isEmpty(p_role)) {
 			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserGroupEmptyRoleError(), ADD_ROLE);
@@ -72,7 +77,7 @@ public class UserGroup implements I_Serializable {
 	}
 	
 
-	public StorageIdentifier getId() {
+	public I_StorageIdentifier getId() {
 		if (org != null) {
 			return org.getId();
 		}
@@ -86,7 +91,7 @@ public class UserGroup implements I_Serializable {
 		return null;
 	}
 
-	public NamedId getType() {
+	public I_NamedId getType() {
 		if (org != null) {
 			return org.getType();
 		}
@@ -101,8 +106,12 @@ public class UserGroup implements I_Serializable {
 	}
 	
 	public String toString() {
+		return toString(this.getClass());
+	}
+	
+	public String toString(Class c) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(ClassUtils.getClassShortName(this.getClass()));
+		sb.append(ClassUtils.getClassShortName(c));
 		sb.append(" [org=");
 		sb.append(org);
 		sb.append(",roles=");

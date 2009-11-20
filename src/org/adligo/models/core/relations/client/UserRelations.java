@@ -12,6 +12,10 @@ import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMail;
 import org.adligo.models.core.client.I_NamedId;
+import org.adligo.models.core.client.I_Org;
+import org.adligo.models.core.client.I_Person;
+import org.adligo.models.core.client.I_StorageIdentifier;
+import org.adligo.models.core.client.I_Subject;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.I_Validateable;
 import org.adligo.models.core.client.InvalidParameterException;
@@ -30,7 +34,7 @@ import org.adligo.models.core.client.User;
  * @author scott
  *
  */
-public class UserRelations implements I_User, I_NamedId, I_Serializable, Serializable, I_Validateable {
+public class UserRelations implements I_Subject, I_NamedId, I_Serializable, I_Validateable, I_UserRelations {
 	
 	public static final String ADD_GROUP = "addGroup";
 	public static final String ADD_ROLE = "addRole";
@@ -48,18 +52,18 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	/**
 	 * the list of roles in all of the groups
 	 */
-	protected Set<String> roles;
+	private Set<String> roles;
 	/**
 	 * the list of groups that the user belongs to
 	 */
-	protected Set<String> groups;
+	private Set<String> groups;
 	
 	/**
 	 * the user could pertain to either a user or a organization
 	 */
-	protected User user;
-	protected Person person;
-	protected Organization org;
+	private User user;
+	private Person person;
+	private Organization org;
 	
 	/**
 	 * for gwt serialization
@@ -73,16 +77,16 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	 * @param p
 	 * @throws InvalidParameterException
 	 */
-	public UserRelations(UserRelationsMutant p) throws InvalidParameterException {
+	public UserRelations(I_UserRelations p) throws InvalidParameterException {
 		try {
-			user = new User(p.getUserMutant());
-			if (p.getOrg_mutant() != null) {
-				org = new Organization(p.getOrg_mutant());
+			user = new User(p.getUser());
+			if (p.getOrg() != null) {
+				org = new Organization(p.getOrg());
 			}
-			if (p.getPerson_mutant() != null) {
-				person = new Person(p.getPerson_mutant());
+			if (p.getPerson() != null) {
+				person = new Person(p.getPerson());
 			}
-			setGroupsRolesFromOther(p.getWrapped());
+			setGroupsRolesFromOther(p);
 		} catch (InvalidParameterException ipe) {
 			InvalidParameterException x = new InvalidParameterException(
 					ipe.getMessage(),USER_RELATIONS);
@@ -98,7 +102,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 	 * @param p
 	 * @throws InvalidParameterException
 	 */
-	public UserRelations(User p) throws InvalidParameterException {
+	public UserRelations(I_User p) throws InvalidParameterException {
 		try {
 			user = new User(p);
 		} catch (InvalidParameterException ipe) {
@@ -131,47 +135,17 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 			throw x;
 		}
 	}
-	/**
-	 * constructor for creating a new user 
-	 * which requires a associated Person or Organization or Both
-	 * @param p
-	 * @throws InvalidParameterException
-	 */
-	public UserRelations(UserRelations p) throws InvalidParameterException {
-		try {
-			if (p.user != null) {
-				user = new User(p.user);
-			}
-			setRelationsFromOther(p);
-		} catch (InvalidParameterException ipe) {
-			InvalidParameterException x = new InvalidParameterException(
-					ipe.getMessage(),USER_RELATIONS);
-			x.initCause(ipe);
-			throw x;
-		}
-	}
 
-	private void setRelationsFromOther(UserRelations p)
+	private void setGroupsRolesFromOther(I_UserRelations p)
 			throws InvalidParameterException {
-		if (p.org != null) {
-			org = new Organization(p.org);
-		}
-		setGroupsRolesFromOther(p);
-		if (p.person != null) {
-			person = new Person(p.person);
-		}
-	}
-
-	private void setGroupsRolesFromOther(UserRelations p)
-			throws InvalidParameterException {
-		if (p.roles != null) {
-			if (p.roles.size() >= 1) {
-				addAllRolesP(p.roles);
+		if (p.getRoles() != null) {
+			if (p.getRoles().size() >= 1) {
+				addAllRolesP(p.getRoles());
 			}
 		}
-		if (p.groups != null) {
-			if (p.groups.size() >= 1) {
-				addAllGroupsP(p.groups);
+		if (p.getGroups() != null) {
+			if (p.getGroups().size() >= 1) {
+				addAllGroupsP(p.getGroups());
 			}
 		}
 	}
@@ -183,7 +157,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		return "";
 	}
 
-	public StorageIdentifier getId() {
+	public I_StorageIdentifier getId() {
 		if (user != null) {
 			return user.getId();
 		}
@@ -199,7 +173,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		return false;
 	}
 
-	protected void addAllRolesP(Collection<String> p_roles) throws InvalidParameterException {
+	void addAllRolesP(Collection<String> p_roles) throws InvalidParameterException {
 		if (p_roles.contains("") || p_roles.contains(null)) {
 			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyRoleError(), ADD_ALL_ROLES);
@@ -207,7 +181,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		getRolesP().addAll(p_roles);
 	}
 	
-	protected void addAllGroupsP(Collection<String> p_groups) throws InvalidParameterException  {
+	void addAllGroupsP(Collection<String> p_groups) throws InvalidParameterException  {
 		if (p_groups.contains("") || p_groups.contains(null)) {
 			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyGroupError(), ADD_ALL_GROUPS);
@@ -215,7 +189,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		getGroupsP().addAll(p_groups);
 	}
 	
-	protected void addRolesP(String p_role) throws InvalidParameterException {
+	void addRolesP(String p_role) throws InvalidParameterException {
 		if (StringUtils.isEmpty(p_role)) {
 			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyRoleError(), ADD_ROLE);
@@ -223,7 +197,7 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		getRolesP().add(p_role);
 	}
 	
-	protected void addGroupP(String p_group) throws InvalidParameterException  {
+	void addGroupP(String p_group) throws InvalidParameterException  {
 		if (StringUtils.isEmpty(p_group)) {
 			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
 					.getUserRelationsEmptyGroupError(), ADD_GROUP);
@@ -231,6 +205,9 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		getGroupsP().add(p_group);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.adligo.models.core.relations.client.I_UserRelations#getRoles()
+	 */
 	@SuppressWarnings("unchecked")
 	public Set<String> getRoles() {
 		if (roles == null) {
@@ -239,6 +216,9 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		return Collections.unmodifiableSet(getRolesP());
 	}
 
+	/* (non-Javadoc)
+	 * @see org.adligo.models.core.relations.client.I_UserRelations#getGroups()
+	 */
 	@SuppressWarnings("unchecked")
 	public Set<String> getGroups() {
 		if (groups == null) {
@@ -247,35 +227,48 @@ public class UserRelations implements I_User, I_NamedId, I_Serializable, Seriali
 		return Collections.unmodifiableSet(getGroupsP());
 	}
 
-	protected Set<String> getRolesP() {
+	Set<String> getRolesP() {
 		if (roles == null) {
 			roles = new HashSet<String>();
 		}
 		return roles;
 	}
 
-	protected Set<String> getGroupsP() {
+	Set<String> getGroupsP() {
 		if (groups == null) {
 			groups = new HashSet<String>();
 		}
 		return groups;
 	}
 	
-	public Person getPerson() {
+	/* (non-Javadoc)
+	 * @see org.adligo.models.core.relations.client.I_UserRelations#getPerson()
+	 */
+	public I_Person getPerson() {
 		return person;
 	}
 	
-	public User getUser() {
+	/* (non-Javadoc)
+	 * @see org.adligo.models.core.relations.client.I_UserRelations#getUser()
+	 */
+	public I_User getUser() {
 		return user;
 	}
 
-	public Organization getOrg() {
+	/* (non-Javadoc)
+	 * @see org.adligo.models.core.relations.client.I_UserRelations#getOrg()
+	 */
+	public I_Org getOrg() {
 		return org;
 	}
 
 	public String toString() {
+		return toString(this.getClass());
+	}
+	
+	public String toString(Class c) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(ClassUtils.getClassShortName(this.getClass()));
+		sb.append(ClassUtils.getClassShortName(c));
 		sb.append(" [user=");
 		sb.append(user);
 		sb.append(",person=");

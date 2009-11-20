@@ -5,16 +5,18 @@ import java.util.Set;
 
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMail;
+import org.adligo.models.core.client.I_Org;
+import org.adligo.models.core.client.I_Person;
+import org.adligo.models.core.client.I_StorageIdentifier;
+import org.adligo.models.core.client.I_Subject;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.OrganizationMutant;
 import org.adligo.models.core.client.PersonMutant;
-import org.adligo.models.core.client.StorageIdentifier;
-import org.adligo.models.core.client.User;
 import org.adligo.models.core.client.UserMutant;
 
 
-public class UserRelationsMutant {
+public class UserRelationsMutant implements I_Subject, I_UserRelations {
 
 	private UserRelations wrapped = new UserRelations();
 	private UserMutant user_mutant;
@@ -25,11 +27,11 @@ public class UserRelationsMutant {
 		user_mutant = new UserMutant();
 	}
 
-	public UserRelationsMutant(User user) throws InvalidParameterException {
+	public UserRelationsMutant(I_User user) throws InvalidParameterException {
 		user_mutant = new UserMutant(user);
 	}
 	
-	public UserRelationsMutant(UserRelations p) throws InvalidParameterException {
+	public UserRelationsMutant(I_UserRelations p) throws InvalidParameterException {
 		user_mutant = new UserMutant(p.getUser());
 		if (p.getPerson() != null) {
 			person_mutant = new PersonMutant(p.getPerson());
@@ -58,7 +60,7 @@ public class UserRelationsMutant {
 	/*
 	 * provide delegate methods only for the main User object
 	 */
-	public void setId(StorageIdentifier id) throws InvalidParameterException {
+	public void setId(I_StorageIdentifier id) throws InvalidParameterException {
 		user_mutant.setId(id);
 	}
 	
@@ -86,20 +88,20 @@ public class UserRelationsMutant {
 		user_mutant.setPassword(password);
 	}
 
-	public PersonMutant getPerson_mutant() {
+	public I_Person getPerson() {
 		return person_mutant;
 	}
 
-	public void setPerson_mutant(PersonMutant personMutant) {
-		person_mutant = personMutant;
+	public void setPerson(I_Person person) throws InvalidParameterException {
+		person_mutant = new PersonMutant(person);
 	}
 
-	public OrganizationMutant getOrg_mutant() {
+	public I_Org getOrg() {
 		return org_mutant;
 	}
 
-	public void setOrg_mutant(OrganizationMutant orgMutant) {
-		org_mutant = orgMutant;
+	public void setOrg(I_Org org) throws InvalidParameterException {
+		org_mutant = new OrganizationMutant(org);
 	}
 
 	protected UserMutant getUserMutant() {
@@ -122,7 +124,7 @@ public class UserRelationsMutant {
 		return user_mutant.getEmail();
 	}
 
-	public StorageIdentifier getId() {
+	public I_StorageIdentifier getId() {
 		return user_mutant.getId();
 	}
 
@@ -144,6 +146,18 @@ public class UserRelationsMutant {
 
 	public Set<String> getGroups() {
 		return wrapped.getGroups();
+	}
+
+	public boolean isValid() {
+		return wrapped.isValid();
+	}
+
+	public Set<String> getRoles() {
+		return wrapped.getRoles();
+	}
+
+	public I_User getUser() {
+		return user_mutant;
 	}
 	
 	
