@@ -2,28 +2,29 @@ package org.adligo.models.core.relations.client.rpc.transfer;
 
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
+import org.adligo.models.core.relations.client.UserRelations;
 
-public class SaveRequest<T extends I_Serializable> implements I_Serializable {
+public class UserSaveRequest implements I_Serializable {
 	private static final long serialVersionUID = 1L;
-	protected T saveObj;
+	protected UserRelations saveObj;
 	protected String eventSource;
 	
 	/**
 	 * for gwt serialization
 	 */
-	public SaveRequest() {
+	public UserSaveRequest() {
 	}
 	
-	public SaveRequest(T p_saveObj, String p_eventSource) {
+	public UserSaveRequest(UserRelations p_saveObj, String p_eventSource) {
 		saveObj = p_saveObj;
 		eventSource = p_eventSource;
 	}
 	
-	public T getSaveObj() {
+	public UserRelations getSaveObj() {
 		return saveObj;
 	}
 
-	public void setSaveObj(T saveObj) {
+	public void setSaveObj(UserRelations saveObj) {
 		this.saveObj = saveObj;
 	}
 

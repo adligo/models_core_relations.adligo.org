@@ -15,7 +15,7 @@ public class AuthenticationResponse implements I_Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * if null the authentication was not sucessfull!
+	 * if null the authentication was not successful!
 	 */
 	protected UserRelations user;
 	protected Map<String, Serializable> newConfig = new HashMap<String, Serializable>();

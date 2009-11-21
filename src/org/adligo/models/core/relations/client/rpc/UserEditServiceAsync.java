@@ -1,9 +1,7 @@
 package org.adligo.models.core.relations.client.rpc;
 
-import org.adligo.models.core.relations.client.UserRelations;
-import org.adligo.models.core.relations.client.rpc.transfer.SaveRequest;
-import org.adligo.models.core.relations.client.rpc.transfer.SaveResponse;
-import org.adligo.models.core.relations.client.rpc.transfer.SaveUserFailureReasons;
+import org.adligo.models.core.relations.client.rpc.transfer.UserSaveRequest;
+import org.adligo.models.core.relations.client.rpc.transfer.UserSaveResponse;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -18,5 +16,5 @@ public interface UserEditServiceAsync {
 	 * 
 	 * @param relations
 	 */
-	public void saveUser(SaveRequest<UserRelations> relations, AsyncCallback<SaveResponse<SaveUserFailureReasons>> callback);
+	public void saveUser(UserSaveRequest relations, AsyncCallback<UserSaveResponse> callback);
 }
