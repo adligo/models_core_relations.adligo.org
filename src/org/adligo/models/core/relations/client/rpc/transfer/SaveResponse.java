@@ -9,9 +9,9 @@ public class SaveResponse<T extends Enum<?>> implements I_Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private boolean successful;
-	private T failureCause;
-	private String eventSource;
+	protected boolean successful;
+	protected T failureCause;
+	protected String eventSource;
 	
 	public boolean isSuccessful() {
 		return successful;

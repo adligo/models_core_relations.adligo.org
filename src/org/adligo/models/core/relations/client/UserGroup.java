@@ -23,8 +23,8 @@ public class UserGroup implements I_Serializable, I_UserGroup {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Organization org;
-	private Set<String> roles;
+	protected Organization org;
+	protected Set<String> roles;
 	
 	/**
 	 * for gwt serialization

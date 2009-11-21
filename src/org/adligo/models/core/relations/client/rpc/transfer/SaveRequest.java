@@ -3,12 +3,10 @@ package org.adligo.models.core.relations.client.rpc.transfer;
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 public class SaveRequest<T extends I_Serializable> implements I_Serializable {
 	private static final long serialVersionUID = 1L;
-	private T saveObj;
-	private String eventSource;
+	protected T saveObj;
+	protected String eventSource;
 	
 	/**
 	 * for gwt serialization

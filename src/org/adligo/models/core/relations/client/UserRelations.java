@@ -52,18 +52,18 @@ public class UserRelations implements I_Subject, I_NamedId, I_Serializable, I_Va
 	/**
 	 * the list of roles in all of the groups
 	 */
-	private Set<String> roles;
+	protected Set<String> roles;
 	/**
 	 * the list of groups that the user belongs to
 	 */
-	private Set<String> groups;
+	protected Set<String> groups;
 	
 	/**
 	 * the user could pertain to either a user or a organization
 	 */
-	private User user;
-	private Person person;
-	private Organization org;
+	protected User user;
+	protected Person person;
+	protected Organization org;
 	
 	/**
 	 * for gwt serialization

@@ -8,8 +8,8 @@ public class ResetPasswordRequest implements I_Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String password;
-	private String emailToken;
+	protected String password;
+	protected String emailToken;
 	
 	public String getPassword() {
 		return password;

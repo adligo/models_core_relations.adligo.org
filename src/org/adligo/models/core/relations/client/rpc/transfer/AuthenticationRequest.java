@@ -17,9 +17,9 @@ public class AuthenticationRequest implements I_Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String userName;
-	private String password;
-	private String domain;
+	protected String userName;
+	protected String password;
+	protected String domain;
 	
 	public String getUserName() {
 		return userName;

@@ -17,8 +17,8 @@ public class AuthenticationResponse implements I_Serializable {
 	/**
 	 * if null the authentication was not sucessfull!
 	 */
-	private UserRelations user;
-	private Map<String, Serializable> newConfig = new HashMap<String, Serializable>();
+	protected UserRelations user;
+	protected Map<String, Serializable> newConfig = new HashMap<String, Serializable>();
 	
 	public UserRelations getUser() {
 		return user;

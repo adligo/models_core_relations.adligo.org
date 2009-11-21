@@ -9,12 +9,12 @@ public class EmailAssistanceRequest implements I_Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private EMail email;
+	protected EMail email;
 	/**
 	 * this is the client locale (en,fr)
 	 * so that the email can go out in the correct language
 	 */
-	private String clientLocale;
+	protected String clientLocale;
 	
 	public String getClientLocale() {
 		return clientLocale;
