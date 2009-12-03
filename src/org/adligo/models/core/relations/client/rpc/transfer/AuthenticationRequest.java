@@ -2,8 +2,6 @@ package org.adligo.models.core.relations.client.rpc.transfer;
 
 import org.adligo.i.util.client.I_Serializable;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 /**
  * basic authentication request, 
  * you can extend to add different types of paramters
