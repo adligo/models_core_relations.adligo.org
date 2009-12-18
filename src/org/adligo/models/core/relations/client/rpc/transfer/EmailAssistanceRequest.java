@@ -1,5 +1,6 @@
 package org.adligo.models.core.relations.client.rpc.transfer;
 
+import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMail;
@@ -38,4 +39,14 @@ public class EmailAssistanceRequest implements I_Serializable {
 		this.domain = domain;
 	}
 	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(ClassUtils.getClassShortName(EmailAssistanceRequest.class));
+		sb.append("[email=");
+		sb.append(email);
+		sb.append(",domain=");
+		sb.append(domain);
+		sb.append("]");
+		return sb.toString();
+	}
 }
