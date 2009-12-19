@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.adligo.models.core.client.DomainName;
-import org.adligo.models.core.client.EMail;
+import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_Org;
 import org.adligo.models.core.client.I_Person;
 import org.adligo.models.core.client.I_StorageIdentifier;
@@ -72,7 +72,7 @@ public class UserRelationsMutant implements I_Subject, I_UserRelations {
 		user_mutant.setDomain(domain);
 	}
 	
-	public void setEmail(EMail email) throws InvalidParameterException {
+	public void setEmail(EMailAddress email) throws InvalidParameterException {
 		user_mutant.setEmail(email);
 	}
 
@@ -120,7 +120,7 @@ public class UserRelationsMutant implements I_Subject, I_UserRelations {
 		return user_mutant.getDomain();
 	}
 
-	public EMail getEmail() {
+	public EMailAddress getEmail() {
 		return user_mutant.getEmail();
 	}
 

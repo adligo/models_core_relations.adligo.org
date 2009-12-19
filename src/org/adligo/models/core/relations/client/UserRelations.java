@@ -10,7 +10,7 @@ import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.I_Serializable;
 import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.DomainName;
-import org.adligo.models.core.client.EMail;
+import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_NamedId;
 import org.adligo.models.core.client.I_Org;
 import org.adligo.models.core.client.I_Person;
@@ -314,7 +314,7 @@ public class UserRelations implements I_Subject, I_NamedId, I_Serializable, I_Va
 		return user.generate();
 	}
 
-	public EMail getEmail() {
+	public EMailAddress getEmail() {
 		return user.getEmail();
 	}
 
