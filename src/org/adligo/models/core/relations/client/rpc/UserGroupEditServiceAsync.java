@@ -1,6 +1,6 @@
 package org.adligo.models.core.relations.client.rpc;
 
-import org.adligo.models.core.relations.client.UserGroup;
+import org.adligo.models.core.relations.client.I_SerializableUserGroup;
 import org.adligo.models.core.relations.client.rpc.transfer.SaveRequest;
 import org.adligo.models.core.relations.client.rpc.transfer.SaveResponse;
 import org.adligo.models.core.relations.client.rpc.transfer.SaveUserGroupFailureReasons;
@@ -15,5 +15,5 @@ public interface UserGroupEditServiceAsync {
 	 * 
 	 * @param relations
 	 */
-	public void saveGroup(SaveRequest<UserGroup> group, AsyncCallback<SaveResponse<SaveUserGroupFailureReasons>> callback);
+	public void saveGroups(SaveRequest<I_SerializableUserGroup> group, AsyncCallback<SaveResponse<SaveUserGroupFailureReasons>> callback);
 }

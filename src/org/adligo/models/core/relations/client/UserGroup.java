@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.i.util.client.ClassUtils;
-import org.adligo.i.util.client.I_Serializable;
 import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.I_NamedId;
 import org.adligo.models.core.client.I_StorageIdentifier;
@@ -15,7 +14,7 @@ import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
 
 
-public class UserGroup implements I_Serializable, I_UserGroup {
+public class UserGroup implements I_SerializableUserGroup {
 	public static final String USER_GROUP = "UserGroup";
 	public static final String ADD_ROLE = "addRole";
 	public static final String ADD_ALL_ROLES = "addAllRoles";

@@ -34,7 +34,7 @@ import org.adligo.models.core.client.User;
  * @author scott
  *
  */
-public class UserRelations implements I_Subject, I_NamedId, I_Serializable, I_Validateable, I_UserRelations {
+public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRelations, I_Validateable {
 	
 	public static final String ADD_GROUP = "addGroup";
 	public static final String ADD_ROLE = "addRole";

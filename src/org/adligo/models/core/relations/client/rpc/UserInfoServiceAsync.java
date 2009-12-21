@@ -2,6 +2,7 @@ package org.adligo.models.core.relations.client.rpc;
 
 import java.util.Collection;
 
+import org.adligo.models.core.relations.client.I_SerializableUserRelations;
 import org.adligo.models.core.relations.client.UserRelations;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -12,6 +13,6 @@ public interface UserInfoServiceAsync {
 	 * 
 	 * @param params (I_TemplateParams xml String toXml fromXml)
 	 */
-	public void findUsers(String params, AsyncCallback<Collection<UserRelations>> callback);
+	public void findUsers(String params, AsyncCallback<Collection<I_SerializableUserRelations>> callback);
 
 }

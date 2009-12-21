@@ -2,6 +2,7 @@ package org.adligo.models.core.relations.client.rpc;
 
 import java.util.Collection;
 
+import org.adligo.models.core.relations.client.I_SerializableUserGroup;
 import org.adligo.models.core.relations.client.UserGroup;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -16,5 +17,5 @@ public interface UserGroupInfoService extends RemoteService {
 	 * @param params (I_TemplateParams xml String toXml fromXml)
 	 * @return
 	 */
-	public Collection<UserGroup> findUserGroups(String params);
+	public Collection<I_SerializableUserGroup> findUserGroups(String params);
 }
