@@ -8,7 +8,7 @@ import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.NamedId;
 import org.adligo.models.core.client.OrganizationMutant;
-import org.adligo.models.core.client.StorageIdentifier;
+import org.adligo.models.core.client.StringIdentifier;
 
 public class UserGroupMutant implements I_UserGroup {
 
@@ -37,7 +37,7 @@ public class UserGroupMutant implements I_UserGroup {
 		wrapped.addAllRolesP(p);
 	}
 
-	public void setId(StorageIdentifier p) throws InvalidParameterException {
+	public void setId(StringIdentifier p) throws InvalidParameterException {
 		org_mutant.setId(p);
 	}
 

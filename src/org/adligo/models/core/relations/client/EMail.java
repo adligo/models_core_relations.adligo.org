@@ -4,8 +4,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.adligo.models.core.client.CommonModel;
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_SerializableStorageIdentifier;
+import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 
@@ -26,17 +28,19 @@ import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
  *
  */
 public class EMail implements I_SerializableEMail {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public static final String ADD_ATTACHMENT = "addAttachment";
 	public static final String E_MAIL = "EMail";
 	public static final String ADD_BCC = "addBCC";
 	public static final String ADD_CC = "addCC";
 	public static final String ADD_TO = "addTo";
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	public static final String SET_FROM = "setFrom";
+	protected I_SerializableStorageIdentifier id;
 	protected EMailAddress from;
 	protected String subject;
 	protected String body;
@@ -49,6 +53,9 @@ public class EMail implements I_SerializableEMail {
 	
 	public EMail(I_EMail other) throws InvalidParameterException {
 		try {
+			if (other.getId() != null) {
+				setIdP(other.getId());
+			}
 			setFromP(other.getFrom());
 			subject = other.getSubject();
 			body = other.getBody();
@@ -221,5 +228,13 @@ public class EMail implements I_SerializableEMail {
 
 	protected synchronized boolean removeAllAttachmentsP(Set<I_SerializableStorageIdentifier> tos) {
 		return attachments.removeAll(tos);
+	}
+
+	public I_SerializableStorageIdentifier getId() {
+		return id;
+	}
+
+	protected void setIdP(I_StorageIdentifier id) throws InvalidParameterException {
+		this.id = CommonModel.getIdClone(id);
 	}
 }

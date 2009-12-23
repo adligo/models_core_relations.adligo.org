@@ -4,9 +4,10 @@ import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_SerializableStorageIdentifier;
+import org.adligo.models.core.client.I_Storable;
 import org.adligo.models.core.client.I_StorageIdentifier;
 
-public interface I_EMail {
+public interface I_EMail extends I_Storable {
 	public EMailAddress getFrom();
 	public String getSubject();
 	public String getBody();

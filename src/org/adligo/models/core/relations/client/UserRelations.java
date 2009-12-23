@@ -22,7 +22,7 @@ import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
-import org.adligo.models.core.client.StorageIdentifier;
+import org.adligo.models.core.client.StringIdentifier;
 import org.adligo.models.core.client.User;
 
 /**
@@ -64,6 +64,7 @@ public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRe
 	protected User user;
 	protected Person person;
 	protected Organization org;
+	
 	
 	/**
 	 * for gwt serialization
@@ -307,7 +308,7 @@ public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRe
 		return user.getDomain();
 	}
 
-	public StorageIdentifier generate() throws InvalidParameterException {
+	public StringIdentifier generate() throws InvalidParameterException {
 		if (user == null) {
 			return null;
 		}
@@ -327,5 +328,9 @@ public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRe
 			return user.getPassword();
 		}
 		return null;
+	}
+
+	public String getDn() throws InvalidParameterException {
+		return user.getDn();
 	}
 }

@@ -4,9 +4,7 @@ import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_SerializableStorageIdentifier;
-import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 
 public class EMailMutant implements I_EMail {
 	private EMail delegate;
@@ -121,5 +119,9 @@ public class EMailMutant implements I_EMail {
 	
 	public synchronized boolean removeAllAttachments(Set<I_SerializableStorageIdentifier> tos) {
 		return delegate.removeAllAttachmentsP(tos);
+	}
+
+	public I_SerializableStorageIdentifier getId() {
+		return delegate.getId();
 	}
 }

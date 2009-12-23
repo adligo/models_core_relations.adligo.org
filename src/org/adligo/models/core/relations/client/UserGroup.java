@@ -8,6 +8,7 @@ import java.util.Set;
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.I_NamedId;
+import org.adligo.models.core.client.I_SerializableStorageIdentifier;
 import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
@@ -22,6 +23,9 @@ public class UserGroup implements I_SerializableUserGroup {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * id is handled by org
+	 */
 	protected Organization org;
 	protected Set<String> roles;
 	
@@ -118,4 +122,5 @@ public class UserGroup implements I_SerializableUserGroup {
 		sb.append("]");
 		return sb.toString();
 	}
+
 }
