@@ -1,75 +1,37 @@
 package org.adligo.models.core.relations.client;
 
+import java.io.Serializable;
 import java.util.Collection;
-import java.util.Set;
+import java.util.HashSet;
 
-import org.adligo.models.core.client.I_NamedId;
-import org.adligo.models.core.client.I_StorageIdentifier;
+import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.NamedId;
-import org.adligo.models.core.client.OrganizationMutant;
-import org.adligo.models.core.client.StorageIdentifier;
 
-public class UserGroupMutant implements I_UserGroup {
+public class UserGroupMutant extends UserGroup implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private OrganizationMutant org_mutant;
-	private UserGroup wrapped;
 	
 	public UserGroupMutant() {
-		wrapped = new UserGroup();
-		org_mutant = new OrganizationMutant();
-	}
-
-	public UserGroupMutant(I_UserGroup other) throws InvalidParameterException {
-		wrapped = new UserGroup(other);
-		org_mutant = new OrganizationMutant(other);
+		roles = new HashSet<String>();
 	}
 	
+
 	public void addRole(String p) throws InvalidParameterException {
-		wrapped.addRoleP(p);
+		if (StringUtils.isEmpty(p)) {
+			throw new InvalidParameterException("Can't add a empty role to UserGroupMutant.", "addRole");
+		}
+		roles.add(p);
 	}
 	
 	public void addRoles(Collection<String> p) throws InvalidParameterException {
-		wrapped.addAllRolesP(p);
-	}
-
-	public void setId(StorageIdentifier p) throws InvalidParameterException {
-		org_mutant.setId(p);
-	}
-
-	public void setName(String p) throws InvalidParameterException {
-		org_mutant.setName(p);
-	}
-
-	public void setType(NamedId p) throws InvalidParameterException {
-		org_mutant.setType(p);
-	}
-
-	public I_StorageIdentifier getId() {
-		return org_mutant.getId();
-	}
-
-	public String getName() {
-		return org_mutant.getName();
-	}
-
-	public I_NamedId getType() {
-		return org_mutant.getType();
-	}
-
-	public boolean isValid() {
-		return org_mutant.isValid();
-	}
-
-	public String toString() {
-		return wrapped.toString(this.getClass());
-	}
-
-	public Set<String> getRoles() {
-		return wrapped.getRoles();
+		if (p.contains(null)) {
+			throw new InvalidParameterException("Can't add a null role to UserGroupMutant.", "addRoles");
+		} else if (p.contains("")) {
+			throw new InvalidParameterException("Can't add a empty role to UserGroupMutant.", "addRoles");
+		}
+		roles.addAll(p);
 	}
 }

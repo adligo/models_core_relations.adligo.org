@@ -7,6 +7,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/i_util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/params"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i_log"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/adi"/>
-	<classpathentry kind="output" path="classes_e"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

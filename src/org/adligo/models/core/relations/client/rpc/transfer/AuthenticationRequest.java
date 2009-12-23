@@ -1,8 +1,6 @@
 package org.adligo.models.core.relations.client.rpc.transfer;
 
-import org.adligo.i.util.client.I_Serializable;
-
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.io.Serializable;
 
 /**
  * basic authentication request, 
@@ -11,12 +9,12 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * @author scott
  *
  */
-public class AuthenticationRequest implements I_Serializable {
-	
+public class AuthenticationRequest implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String userName;
 	private String password;
 	private String domain;
