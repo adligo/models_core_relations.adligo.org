@@ -1,13 +1,11 @@
 package org.adligo.models.core.relations.client;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.i.util.client.ClassUtils;
-import org.adligo.i.util.client.I_Serializable;
 import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMailAddress;
@@ -34,7 +32,7 @@ import org.adligo.models.core.client.User;
  * @author scott
  *
  */
-public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRelations, I_Validateable {
+public class UserRelations implements I_Subject, I_NamedId, I_UserRelations, I_Validateable {
 	
 	public static final String ADD_GROUP = "addGroup";
 	public static final String ADD_ROLE = "addRole";
@@ -81,11 +79,10 @@ public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRe
 	public UserRelations(I_UserRelations p) throws InvalidParameterException {
 		try {
 			user = new User(p.getUser());
-			if (p.getOrg() != null) {
-				org = new Organization(p.getOrg());
-			}
 			if (p.getPerson() != null) {
 				person = new Person(p.getPerson());
+			} else if (p.getOrg() != null) {
+				org = new Organization(p.getOrg());
 			}
 			setGroupsRolesFromOther(p);
 		} catch (InvalidParameterException ipe) {
@@ -330,7 +327,7 @@ public class UserRelations implements I_Subject, I_NamedId, I_SerializableUserRe
 		return null;
 	}
 
-	public String getDn() throws InvalidParameterException {
+	public String getDn() {
 		return user.getDn();
 	}
 }

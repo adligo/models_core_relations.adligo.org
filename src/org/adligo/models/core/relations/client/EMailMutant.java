@@ -3,7 +3,7 @@ package org.adligo.models.core.relations.client;
 import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_SerializableStorageIdentifier;
+import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 
 public class EMailMutant implements I_EMail {
@@ -17,7 +17,7 @@ public class EMailMutant implements I_EMail {
 		delegate = new EMail(other);
 	}
 
-	public Set<I_SerializableStorageIdentifier> getAttachments() {
+	public Set<I_StorageIdentifier> getAttachments() {
 		return delegate.getAttachments();
 	}
 
@@ -105,23 +105,23 @@ public class EMailMutant implements I_EMail {
 		return delegate.removeAllBccP(tos);
 	}
 	
-	public synchronized boolean addAttachment(I_SerializableStorageIdentifier id) throws InvalidParameterException {
+	public synchronized boolean addAttachment(I_StorageIdentifier id) throws InvalidParameterException {
 		return delegate.addAttachmentP(id);
 	}
 
-	public synchronized boolean removeAttachment(I_SerializableStorageIdentifier id) {
+	public synchronized boolean removeAttachment(I_StorageIdentifier id) {
 		return delegate.removeAttachmentP(id);
 	}	
 	
-	public synchronized boolean addAllAttachments(Set<I_SerializableStorageIdentifier> tos) throws InvalidParameterException {
+	public synchronized boolean addAllAttachments(Set<I_StorageIdentifier> tos) throws InvalidParameterException {
 		return delegate.addAllAttachmentsP(tos);
 	}
 	
-	public synchronized boolean removeAllAttachments(Set<I_SerializableStorageIdentifier> tos) {
+	public synchronized boolean removeAllAttachments(Set<I_StorageIdentifier> tos) {
 		return delegate.removeAllAttachmentsP(tos);
 	}
 
-	public I_SerializableStorageIdentifier getId() {
+	public I_StorageIdentifier getId() {
 		return delegate.getId();
 	}
 }

@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.adligo.models.core.client.CommonModel;
 import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_SerializableStorageIdentifier;
 import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
@@ -27,7 +26,7 @@ import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
  * @author scott
  *
  */
-public class EMail implements I_SerializableEMail {
+public class EMail implements I_EMail {
 	/**
 	 * 
 	 */
@@ -40,14 +39,14 @@ public class EMail implements I_SerializableEMail {
 	public static final String ADD_TO = "addTo";
 
 	public static final String SET_FROM = "setFrom";
-	protected I_SerializableStorageIdentifier id;
+	protected I_StorageIdentifier id;
 	protected EMailAddress from;
 	protected String subject;
 	protected String body;
 	protected Set<EMailAddress> toAddresses = new HashSet<EMailAddress>();
 	protected Set<EMailAddress> ccAddresses = new HashSet<EMailAddress>();
 	protected Set<EMailAddress> bccAddresses = new HashSet<EMailAddress>();
-	protected Set<I_SerializableStorageIdentifier> attachments = new HashSet<I_SerializableStorageIdentifier>();
+	protected Set<I_StorageIdentifier> attachments = new HashSet<I_StorageIdentifier>();
 	
 	public EMail () {}
 	
@@ -107,7 +106,7 @@ public class EMail implements I_SerializableEMail {
 		this.body = body;
 	}
 	
-	public Set<I_SerializableStorageIdentifier> getAttachments() {
+	public Set<I_StorageIdentifier> getAttachments() {
 		return Collections.unmodifiableSet(attachments);
 	}
 	
@@ -197,12 +196,12 @@ public class EMail implements I_SerializableEMail {
 		return bccAddresses.removeAll(tos);
 	}
 	
-	protected synchronized boolean addAttachmentP(I_SerializableStorageIdentifier id) throws InvalidParameterException {
+	protected synchronized boolean addAttachmentP(I_StorageIdentifier id) throws InvalidParameterException {
 		validateAttachemt(id);
 		return attachments.add(id);
 	}
 
-	private void validateAttachemt(I_SerializableStorageIdentifier id)
+	private void validateAttachemt(I_StorageIdentifier id)
 			throws InvalidParameterException {
 		if (id == null) {
 			throw new InvalidParameterException(
@@ -214,23 +213,23 @@ public class EMail implements I_SerializableEMail {
 		}
 	}
 
-	protected synchronized boolean removeAttachmentP(I_SerializableStorageIdentifier id) {
+	protected synchronized boolean removeAttachmentP(I_StorageIdentifier id) {
 		return attachments.remove(id);
 	}	
 	
-	protected synchronized boolean addAllAttachmentsP(Set<I_SerializableStorageIdentifier> tos) throws InvalidParameterException {
-		for (I_SerializableStorageIdentifier ea: tos) {
+	protected synchronized boolean addAllAttachmentsP(Set<I_StorageIdentifier> tos) throws InvalidParameterException {
+		for (I_StorageIdentifier ea: tos) {
 			validateAttachemt(ea);
 			attachments.add(ea);
 		}
 		return true;
 	}
 
-	protected synchronized boolean removeAllAttachmentsP(Set<I_SerializableStorageIdentifier> tos) {
+	protected synchronized boolean removeAllAttachmentsP(Set<I_StorageIdentifier> tos) {
 		return attachments.removeAll(tos);
 	}
 
-	public I_SerializableStorageIdentifier getId() {
+	public I_StorageIdentifier getId() {
 		return id;
 	}
 

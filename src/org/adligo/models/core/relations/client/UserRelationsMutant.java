@@ -112,7 +112,7 @@ public class UserRelationsMutant implements I_Subject, I_UserRelations {
 		return wrapped;
 	}
 
-	public String getDn() throws InvalidParameterException {
+	public String getDn() {
 		return user_mutant.getDn();
 	}
 

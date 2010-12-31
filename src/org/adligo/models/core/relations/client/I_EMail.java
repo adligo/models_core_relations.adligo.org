@@ -3,7 +3,6 @@ package org.adligo.models.core.relations.client;
 import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_SerializableStorageIdentifier;
 import org.adligo.models.core.client.I_Storable;
 import org.adligo.models.core.client.I_StorageIdentifier;
 
@@ -38,6 +37,6 @@ public interface I_EMail extends I_Storable {
 	 * it really depends on how your using 
 	 * the email model, and what your trying to accomplish.
 	 */
-	public Set<I_SerializableStorageIdentifier> getAttachments();
+	public Set<I_StorageIdentifier> getAttachments();
 	
 }
