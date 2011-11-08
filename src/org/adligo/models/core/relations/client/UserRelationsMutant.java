@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_Org;
+import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
 import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.I_Subject;
@@ -18,6 +18,10 @@ import org.adligo.models.core.client.UserMutant;
 
 public class UserRelationsMutant implements I_Subject, I_UserRelations {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UserRelations wrapped = new UserRelations();
 	private UserMutant user_mutant;
 	private PersonMutant person_mutant;
@@ -96,11 +100,11 @@ public class UserRelationsMutant implements I_Subject, I_UserRelations {
 		person_mutant = new PersonMutant(person);
 	}
 
-	public I_Org getOrg() {
+	public I_Organization getOrg() {
 		return org_mutant;
 	}
 
-	public void setOrg(I_Org org) throws InvalidParameterException {
+	public void setOrg(I_Organization org) throws InvalidParameterException {
 		org_mutant = new OrganizationMutant(org);
 	}
 

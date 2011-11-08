@@ -10,7 +10,7 @@ import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_NamedId;
-import org.adligo.models.core.client.I_Org;
+import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
 import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.I_Subject;
@@ -256,7 +256,7 @@ public class UserRelations implements I_Subject, I_NamedId, I_UserRelations, I_V
 	/* (non-Javadoc)
 	 * @see org.adligo.models.core.relations.client.I_UserRelations#getOrg()
 	 */
-	public I_Org getOrg() {
+	public I_Organization getOrg() {
 		return org;
 	}
 
