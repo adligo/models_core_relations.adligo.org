@@ -1,5 +1,6 @@
 package org.adligo.models.core.relations.client;
 
+import java.util.Collection;
 import java.util.Set;
 
 import org.adligo.models.core.client.I_Organization;
@@ -10,14 +11,14 @@ import org.adligo.models.core.client.I_User;
 
 public interface I_UserRelations extends I_User, I_Subject, I_Storable {
 
-	public abstract Set<String> getRoles();
+	public Collection<String> getRoles();
 
-	public abstract Set<String> getGroups();
+	public Collection<String> getGroups();
 
-	public abstract I_Person getPerson();
+	public I_Person getPerson();
 
-	public abstract I_User getUser();
+	public I_User getUser();
 
-	public abstract I_Organization getOrg();
+	public I_Organization getOrg();
 
 }
