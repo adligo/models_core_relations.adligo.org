@@ -1,7 +1,6 @@
 package org.adligo.models.core.relations.client;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
