@@ -324,4 +324,71 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	public void setDomain(I_DomainName d) throws InvalidParameterException {
 		user.setDomain(d);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
+		result = prime * result + ((org == null) ? 0 : org.hashCode());
+		result = prime * result + ((person == null) ? 0 : person.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		try {
+			I_UserRelations other = (I_UserRelations) obj;
+			if (groups == null) {
+				if (other.getGroups() != null)
+					return false;
+			} else {
+				Collection otherGroups = other.getGroups();
+				if (groups.size() != otherGroups.size()) {
+					return false;
+				}
+				if (!groups.containsAll(otherGroups)) {
+					return false;
+				}
+			}
+			if (org == null) {
+				if (other.getOrg() != null)
+					return false;
+			} else if (!org.equals(other.getOrg()))
+				return false;
+			if (person == null) {
+				if (other.getPerson() != null)
+					return false;
+			} else if (!person.equals(other.getPerson()))
+				return false;
+			if (roles == null) {
+				if (other.getRoles() != null)
+					return false;
+			} else {
+				Collection otherRoles = other.getRoles();
+				if (roles.size() != otherRoles.size()) {
+					return false;
+				}
+				if (!roles.containsAll(otherRoles)) {
+					return false;
+				}
+			}
+			if (user == null) {
+				if (other.getUser() != null)
+					return false;
+			} else if (!user.equals(other.getUser()))
+				return false;
+		} catch (ClassCastException x) {
+			return false;
+		}
+		return true;
+	}
 }
