@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_Storable;
-import org.adligo.models.core.client.I_StorageIdentifier;
+import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 public interface I_EMail extends I_Storable {
 	public EMailAddress getFrom();

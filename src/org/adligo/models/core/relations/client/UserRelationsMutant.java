@@ -11,7 +11,6 @@ import org.adligo.models.core.client.I_DomainName;
 import org.adligo.models.core.client.I_EMailAddress;
 import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
-import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.I_UserMutant;
 import org.adligo.models.core.client.InvalidParameterException;
@@ -20,6 +19,7 @@ import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
 import org.adligo.models.core.client.User;
 import org.adligo.models.core.client.UserMutant;
+import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 /**
  * A class that represents all of the possible relations

@@ -3,8 +3,8 @@ package org.adligo.models.core.relations.client;
 import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
+import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 public class EMailMutant implements I_EMail {
 	private EMail delegate;

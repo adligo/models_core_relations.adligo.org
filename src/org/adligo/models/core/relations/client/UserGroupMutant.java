@@ -4,11 +4,11 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.adligo.models.core.client.I_NamedId;
-import org.adligo.models.core.client.I_StorageIdentifier;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.NamedId;
 import org.adligo.models.core.client.OrganizationMutant;
-import org.adligo.models.core.client.StringIdentifier;
+import org.adligo.models.core.client.ids.I_StorageIdentifier;
+import org.adligo.models.core.client.ids.StringIdentifier;
 
 public class UserGroupMutant implements I_UserGroup {
 
