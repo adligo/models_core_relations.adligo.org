@@ -93,8 +93,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 			}
 		} catch (InvalidParameterException ipe) {
 			InvalidParameterException x = new InvalidParameterException(
-					ipe.getMessage(),CONSTRUCTOR);
-			x.initCause(ipe);
+					ipe.getMessage(),CONSTRUCTOR, ipe);
 			throw x;
 		}
 	}
@@ -110,10 +109,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 		try {
 			user = new UserMutant(p);
 		} catch (InvalidParameterException ipe) {
-			InvalidParameterException x = new InvalidParameterException(
-					ipe.getMessage(),CONSTRUCTOR);
-			x.initCause(ipe);
-			throw x;
+			throw new InvalidParameterException(ipe.getMessage(),CONSTRUCTOR, ipe);
 		}
 	}
 	
@@ -133,10 +129,8 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 				addRoles(p_roles);
 			}
 		} catch (InvalidParameterException ipe) {
-			InvalidParameterException x = new InvalidParameterException(
-					ipe.getMessage(),CONSTRUCTOR);
-			x.initCause(ipe);
-			throw x;
+			throw new InvalidParameterException(
+					ipe.getMessage(),CONSTRUCTOR, ipe);
 		}
 	}
 

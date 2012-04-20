@@ -63,9 +63,7 @@ public class EMail implements I_EMail {
 			bccAddresses.addAll(other.getBCCs());
 			attachments.addAll(other.getAttachments());
 		} catch (InvalidParameterException e) {
-			InvalidParameterException toThrow = new InvalidParameterException(e.getMessage(), E_MAIL);
-			toThrow.initCause(e);
-			throw  toThrow;
+			throw new InvalidParameterException(e.getMessage(), E_MAIL, e);
 		}
 		if (toAddresses.size() == 0) {
 			if (ccAddresses.size() == 0) {

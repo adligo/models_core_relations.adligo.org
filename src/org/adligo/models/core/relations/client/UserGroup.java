@@ -42,9 +42,7 @@ public class UserGroup implements I_UserGroup {
 				}
 			}
 		} catch (InvalidParameterException  x) {
-			InvalidParameterException ipe = new InvalidParameterException(x.getMessage(), USER_GROUP);
-			ipe.initCause(x);
-			throw ipe;
+			throw new InvalidParameterException(x.getMessage(), USER_GROUP, x);
 		}
 	}
 	
