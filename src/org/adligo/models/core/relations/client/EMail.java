@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.models.core.client.CommonModel;
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
@@ -31,7 +30,7 @@ public class EMail implements I_EMail {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	public static final String SET_ID = "setId";
 	public static final String ADD_ATTACHMENT = "addAttachment";
 	public static final String E_MAIL = "EMail";
 	public static final String ADD_BCC = "addBCC";
@@ -231,7 +230,11 @@ public class EMail implements I_EMail {
 		return id;
 	}
 
-	protected void setIdP(I_StorageIdentifier id) throws InvalidParameterException {
-		this.id = CommonModel.getIdClone(id);
+	private void setIdP(I_StorageIdentifier id) throws InvalidParameterException {
+		if (id == null) {
+			throw new InvalidParameterException(
+					ModelsCoreConstantsObtainer.getConstants().getStorageIdRequired(), SET_ID);
+		}
+		this.id = id.toImmutable();
 	}
 }
