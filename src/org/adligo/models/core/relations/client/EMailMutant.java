@@ -194,8 +194,8 @@ public class EMailMutant implements I_EMail {
 					ModelsCoreConstantsObtainer.getConstants().getEMailRequiresAValidAttachemt(), ADD_ATTACHMENT);
 		}
 	}
-
-	public boolean removeAttachmentP(I_StorageIdentifier id) {
+	
+	public boolean removeAttachment(I_StorageIdentifier id) {
 		return attachments.remove(id);
 	}	
 	
@@ -208,7 +208,7 @@ public class EMailMutant implements I_EMail {
 		return true;
 	}
 
-	public boolean removeAllAttachmentsP(Set<I_StorageIdentifier> tos) {
+	public boolean removeAllAttachments(Set<I_StorageIdentifier> tos) {
 		return attachments.removeAll(tos);
 	}
 
