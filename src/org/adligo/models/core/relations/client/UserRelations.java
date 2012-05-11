@@ -2,8 +2,8 @@ package org.adligo.models.core.relations.client;
 
 import java.util.Set;
 
-import org.adligo.models.core.client.I_DomainName;
-import org.adligo.models.core.client.I_EMailAddress;
+import org.adligo.models.core.client.DomainName;
+import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
 import org.adligo.models.core.client.I_User;
@@ -49,11 +49,11 @@ public class UserRelations implements I_UserRelations {
 		return wrapped.getDn();
 	}
 
-	public I_DomainName getDomain() {
+	public DomainName getDomain() {
 		return wrapped.getDomain();
 	}
 
-	public I_EMailAddress getEmail() {
+	public EMailAddress getEmail() {
 		return wrapped.getEmail();
 	}
 

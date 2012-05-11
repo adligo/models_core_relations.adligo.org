@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.StringUtils;
-import org.adligo.models.core.client.I_DomainName;
-import org.adligo.models.core.client.I_EMailAddress;
+import org.adligo.models.core.client.DomainName;
+import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
 import org.adligo.models.core.client.I_User;
@@ -17,7 +17,6 @@ import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
-import org.adligo.models.core.client.User;
 import org.adligo.models.core.client.UserMutant;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
@@ -245,14 +244,14 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	}
 
 
-	public I_DomainName getDomain() {
+	public DomainName getDomain() {
 		if (user == null) {
 			return null;
 		}
 		return user.getDomain();
 	}
 
-	public I_EMailAddress getEmail() {
+	public EMailAddress getEmail() {
 		return user.getEmail();
 	}
 
@@ -311,11 +310,11 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 		user.setPassword(p);
 	}
 
-	public void setEmail(I_EMailAddress p) throws InvalidParameterException {
+	public void setEmail(EMailAddress p) throws InvalidParameterException {
 		user.setEmail(p);
 	}
 
-	public void setDomain(I_DomainName d) throws InvalidParameterException {
+	public void setDomain(DomainName d) throws InvalidParameterException {
 		user.setDomain(d);
 	}
 
