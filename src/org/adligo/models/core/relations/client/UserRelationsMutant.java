@@ -43,24 +43,26 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	/**
 	 * the list of roles in all of the groups
 	 */
-	protected Set<String> roles = new HashSet<String>();
+	private Set<String> roles = new HashSet<String>();
 	/**
 	 * the list of groups that the user belongs to
 	 */
-	protected Set<String> groups = new HashSet<String>();
+	private Set<String> groups = new HashSet<String>();
 	
 	/**
 	 * the user could pertain to either a user or a organization
 	 */
-	protected I_UserMutant user = new UserMutant();
-	protected I_Person person;
-	protected I_Organization org;
+	private I_User user;
+	private I_Person person;
+	private I_Organization org;
 	
 	
 	/**
 	 * for gwt serialization
 	 */
-	public UserRelationsMutant() {}
+	public UserRelationsMutant() {
+		user = new UserMutant();
+	}
 
 	/**
 	 * constructor for creating a new user
@@ -300,22 +302,6 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	@Override
 	public void setOrg(I_Organization p) throws InvalidParameterException {
 		org = p;
-	}
-
-	public void setName(String p) throws InvalidParameterException {
-		user.setName(p);
-	}
-
-	public void setPassword(String p) throws InvalidParameterException {
-		user.setPassword(p);
-	}
-
-	public void setEmail(EMailAddress p) throws InvalidParameterException {
-		user.setEmail(p);
-	}
-
-	public void setDomain(DomainName d) throws InvalidParameterException {
-		user.setDomain(d);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package org.adligo.models.core.relations.client;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.i.util.client.I_Immutable;
@@ -9,6 +11,9 @@ import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.InvalidParameterException;
+import org.adligo.models.core.client.Organization;
+import org.adligo.models.core.client.Person;
+import org.adligo.models.core.client.User;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 
@@ -18,26 +23,53 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private UserRelationsMutant wrapped = new UserRelationsMutant();
+	private UserRelationsMutant wrapped;
+	@SuppressWarnings("unchecked")
+	private Set<String> roles = Collections.EMPTY_SET;
+	/**
+	 * the list of groups that the user belongs to
+	 */
+	@SuppressWarnings("unchecked")
+	private Set<String> groups = Collections.EMPTY_SET;
+	
+	/**
+	 * the user could pertain to either a user or a organization
+	 */
+	private I_User user;
+	private I_Person person;
+	private I_Organization org;
 	
 	public UserRelations() {
+		wrapped = new UserRelationsMutant();
 	}
 
 	public UserRelations(I_User user) throws InvalidParameterException {
 		wrapped = new UserRelationsMutant(user);
+		user = new User(user);
 	}
 	
 	public UserRelations(I_UserRelations p) throws InvalidParameterException {
 		wrapped = new UserRelationsMutant(p);
+		user = new User(p.getUser());
+		I_Person psn = p.getPerson();
+		if (psn != null) {
+			person = new Person(psn);
+		}
+		I_Organization org = p.getOrg();
+		if (org != null) {
+			org = new Organization(org);
+		}
+		roles = Collections.unmodifiableSet(new HashSet<String>(p.getRoles()));
+		groups = Collections.unmodifiableSet(new HashSet<String>(p.getGroups()));
 	}
 
 
 	public I_Person getPerson() {
-		return wrapped.getPerson();
+		return person;
 	}
 
 	public I_Organization getOrg() {
-		return wrapped.getOrg();
+		return org;
 	}
 
 
@@ -59,7 +91,7 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 	}
 
 	public I_StorageIdentifier getId() {
-		return wrapped.getId();
+		return user.getId();
 	}
 
 	public String getName() {
@@ -79,16 +111,16 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 	}
 
 	public Set<String> getGroups() {
-		return wrapped.getGroups();
+		return groups;
 	}
 
 
 	public Set<String> getRoles() {
-		return wrapped.getRoles();
+		return roles;
 	}
 
 	public I_User getUser() {
-		return wrapped.getUser();
+		return user;
 	}
 
 	@Override
