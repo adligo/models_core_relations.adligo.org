@@ -3,73 +3,120 @@ package org.adligo.models.core.relations.client;
 import java.util.Collection;
 import java.util.Set;
 
+import org.adligo.i.util.client.ClassUtils;
+import org.adligo.i.util.client.StringUtils;
 import org.adligo.models.core.client.I_NamedId;
+import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.NamedId;
-import org.adligo.models.core.client.OrganizationMutant;
+import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
+import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
-import org.adligo.models.core.client.ids.StringIdentifier;
 
 public class UserGroupMutant implements I_UserGroup {
-
+	public static final String USER_GROUP = "UserGroup";
+	public static final String ADD_ROLE = "addRole";
+	public static final String ADD_ALL_ROLES = "addAllRoles";
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private OrganizationMutant org_mutant;
-	private UserGroup wrapped;
+	/**
+	 * id is handled by org
+	 */
+	protected Organization org;
+	protected Set<String> roles;
 	
-	public UserGroupMutant() {
-		wrapped = new UserGroup();
-		org_mutant = new OrganizationMutant();
-	}
-
-	public UserGroupMutant(I_UserGroup other) throws InvalidParameterException {
-		wrapped = new UserGroup(other);
-		org_mutant = new OrganizationMutant(other);
+	/**
+	 * for gwt serialization
+	 */
+	public UserGroupMutant() {}
+	
+	public UserGroupMutant(I_UserGroup group) throws InvalidParameterException {
+		try {
+			setOrg(group);
+			if (group.getRoles() != null) {
+				if (group.getRoles().size() >= 1) {
+					setRoles(group.getRoles());
+				}
+			}
+		} catch (InvalidParameterException  x) {
+			throw new InvalidParameterException(x.getMessage(), USER_GROUP, x);
+		}
 	}
 	
-	public void addRole(String p) throws InvalidParameterException {
-		wrapped.addRoleP(p);
+
+
+	public Set<String> getRoles() {
+		return roles;
 	}
 	
-	public void addRoles(Collection<String> p) throws InvalidParameterException {
-		wrapped.addAllRolesP(p);
+	public void setRoles(Collection<String> p_roles) throws InvalidParameterException {
+		if (p_roles.contains("") || p_roles.contains(null)) {
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
+					.getUserGroupEmptyRoleError(), ADD_ALL_ROLES);
+		}
+		roles.clear();
+		roles.addAll(p_roles);
 	}
-
-	public void setId(StringIdentifier p) throws InvalidParameterException {
-		org_mutant.setId(p);
+	
+	public void addRole(String p_role) throws InvalidParameterException {
+		if (StringUtils.isEmpty(p_role)) {
+			throw new InvalidParameterException(ModelsCoreConstantsObtainer.getConstants()
+					.getUserGroupEmptyRoleError(), ADD_ROLE);
+		}
+		roles.add(p_role);
 	}
-
-	public void setName(String p) throws InvalidParameterException {
-		org_mutant.setName(p);
-	}
-
-	public void setType(NamedId p) throws InvalidParameterException {
-		org_mutant.setType(p);
-	}
+	
 
 	public I_StorageIdentifier getId() {
-		return org_mutant.getId();
+		if (org != null) {
+			return org.getId();
+		}
+		return null;
 	}
 
 	public String getName() {
-		return org_mutant.getName();
+		if (org != null) {
+			return org.getName();
+		}
+		return null;
 	}
 
 	public I_NamedId getType() {
-		return org_mutant.getType();
+		if (org != null) {
+			return org.getType();
+		}
+		return null;
 	}
 
 	public boolean isValid() {
-		return org_mutant.isValid();
+		if (org != null) {
+			return org.isValid();
+		}
+		return false;
 	}
-
+	
 	public String toString() {
-		return wrapped.toString(this.getClass());
+		return toString(this.getClass());
+	}
+	
+	public String toString(Class c) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(ClassUtils.getClassShortName(c));
+		sb.append(" [org=");
+		sb.append(org);
+		sb.append(",roles=");
+		sb.append(roles);
+		sb.append("]");
+		return sb.toString();
 	}
 
-	public Set<String> getRoles() {
-		return wrapped.getRoles();
+	public I_Organization getOrg() {
+		return org;
 	}
+
+	public void setOrg(I_Organization other) throws InvalidParameterException {
+		this.org = new Organization(other);
+	}
+
 }

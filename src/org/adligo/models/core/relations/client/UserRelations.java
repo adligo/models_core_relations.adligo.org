@@ -2,6 +2,7 @@ package org.adligo.models.core.relations.client;
 
 import java.util.Set;
 
+import org.adligo.i.util.client.I_Immutable;
 import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_Organization;
@@ -11,7 +12,7 @@ import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 
-public class UserRelations implements I_UserRelations {
+public class UserRelations implements I_UserRelations, I_Immutable {
 
 	/**
 	 * 
@@ -88,6 +89,11 @@ public class UserRelations implements I_UserRelations {
 
 	public I_User getUser() {
 		return wrapped.getUser();
+	}
+
+	@Override
+	public String getImmutableFieldName() {
+		return "wrapped";
 	}
 	
 	

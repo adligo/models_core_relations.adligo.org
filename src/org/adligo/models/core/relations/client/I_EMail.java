@@ -15,18 +15,18 @@ public interface I_EMail extends I_Storable {
 	 * returns the number of to email addresses
 	 * @return
 	 */
-	public Set<EMailAddress> getTOs();
+	public Set<EMailAddress> getToAddresses();
 	/**
 	 * returns the number of cc email addresses
 	 * @return
 	 */
-	public Set<EMailAddress> getCCs();
+	public Set<EMailAddress> getCcAddresses();
 	
 	/**
 	 * returns the number of bcc email addresses
 	 * @return
 	 */
-	public Set<EMailAddress> getBCCs();
+	public Set<EMailAddress> getBccAddresses();
 	
 	/**
 	 * returns the storage identifier for the attachment
