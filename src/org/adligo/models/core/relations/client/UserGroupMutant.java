@@ -1,6 +1,7 @@
 package org.adligo.models.core.relations.client;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.i.util.client.ClassUtils;
@@ -24,7 +25,7 @@ public class UserGroupMutant implements I_UserGroup {
 	 * id is handled by org
 	 */
 	protected Organization org;
-	protected Set<String> roles;
+	protected Set<String> roles = new HashSet<String>();
 	
 	/**
 	 * for gwt serialization

@@ -144,6 +144,10 @@ public class EMailMutant implements I_EMail {
 	}
 	
 	public boolean setCcAddresses(Collection<EMailAddress> tos) throws InvalidParameterException {
+		if (tos == null) {
+			throw new InvalidParameterException(
+					ModelsCoreConstantsObtainer.getConstants().getEMailRequiresAValidAddress(), ADD_CC);
+		}
 		ccAddresses.clear();
 		for (EMailAddress ea: tos) {
 			validateAddr(ea, ADD_CC);
