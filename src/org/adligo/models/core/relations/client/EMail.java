@@ -32,16 +32,34 @@ public class EMail implements I_EMail, I_Immutable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private EMailMutant mutant;
-
+	private I_StorageIdentifier id;
+	private Set<I_StorageIdentifier> attachments;
+	
 	public EMail() {}
 	
 	public EMail(I_EMail other) throws InvalidParameterException {
 		mutant = new EMailMutant(other);
+		
+		Set<I_StorageIdentifier> toRet = new HashSet<I_StorageIdentifier>();
+		attachments = new HashSet<I_StorageIdentifier>();
+		for (I_StorageIdentifier id: other.getAttachments()) {
+			toRet.add(id.toImmutable());
+		}
+		attachments = Collections.unmodifiableSet(attachments);
+		I_StorageIdentifier otherId = other.getId();
+		if (id != null) {
+			id = otherId.toImmutable();
+		}
 	}
 	@Override
 	public I_StorageIdentifier getId() {
 		I_StorageIdentifier id = mutant.getId();
-		return id.toImmutable();
+		try {
+			id.toImmutable();
+		} catch (InvalidParameterException e) {
+			throw new IllegalStateException("There was a problem turning the follwing object into a immutable " +id);
+		}
+		return null;
 	}
 	
 	@Override
@@ -81,12 +99,7 @@ public class EMail implements I_EMail, I_Immutable {
 	
 	@Override
 	public Set<I_StorageIdentifier> getAttachments() {
-		Set<I_StorageIdentifier> toRet = new HashSet<I_StorageIdentifier>();
-		Set<I_StorageIdentifier> wrapped = mutant.getAttachments();
-		for (I_StorageIdentifier id: wrapped) {
-			toRet.add(id.toImmutable());
-		}
-		return null;
+		return attachments;
 	}
 
 }
