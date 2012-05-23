@@ -234,4 +234,8 @@ public class EMailMutant implements I_EMail {
 	public I_StorageInfo getStorageInfo() {
 		return storageInfo;
 	}
+	
+	public void setStorageInfo(I_StorageInfo info) throws InvalidParameterException {
+		storageInfo = info;
+	}
 }
