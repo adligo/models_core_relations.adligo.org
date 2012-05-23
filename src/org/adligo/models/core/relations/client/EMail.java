@@ -6,8 +6,10 @@ import java.util.Set;
 
 import org.adligo.i.util.client.I_Immutable;
 import org.adligo.models.core.client.EMailAddress;
+import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
+import org.adligo.models.core.client.ValidationException;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 /**
@@ -33,6 +35,7 @@ public class EMail implements I_EMail, I_Immutable {
 	private static final long serialVersionUID = 1L;
 	private EMailMutant mutant;
 	private I_StorageIdentifier id;
+	private I_StorageInfo storageInfo;
 	private Set<I_StorageIdentifier> attachments;
 	
 	public EMail() {}
@@ -49,6 +52,14 @@ public class EMail implements I_EMail, I_Immutable {
 		I_StorageIdentifier otherId = other.getId();
 		if (id != null) {
 			id = otherId;
+		}
+		I_StorageInfo info = other.getStorageInfo();
+		if (info != null) {
+			try {
+				storageInfo = (I_StorageInfo) info.toImmutable();
+			} catch (ValidationException e) {
+				throw new InvalidParameterException(e);
+			}
 		}
 	}
 	@Override
@@ -95,6 +106,10 @@ public class EMail implements I_EMail, I_Immutable {
 	@Override
 	public Set<I_StorageIdentifier> getAttachments() {
 		return attachments;
+	}
+
+	public I_StorageInfo getStorageInfo() {
+		return storageInfo;
 	}
 
 }

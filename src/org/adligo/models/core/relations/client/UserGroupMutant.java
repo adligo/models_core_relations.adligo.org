@@ -6,11 +6,15 @@ import java.util.Set;
 
 import org.adligo.i.util.client.ClassUtils;
 import org.adligo.i.util.client.StringUtils;
+import org.adligo.models.core.client.I_CustomInfo;
 import org.adligo.models.core.client.I_NamedId;
 import org.adligo.models.core.client.I_Organization;
+import org.adligo.models.core.client.I_OrganizationMutant;
+import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
+import org.adligo.models.core.client.ValidationException;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
 public class UserGroupMutant implements I_UserGroup {
@@ -118,6 +122,46 @@ public class UserGroupMutant implements I_UserGroup {
 
 	public void setOrg(I_Organization other) throws InvalidParameterException {
 		this.org = new Organization(other);
+	}
+
+	@Override
+	public I_CustomInfo getCustomInfo() {
+		if (org == null) {
+			return null;
+		}
+		return org.getCustomInfo();
+	}
+
+	@Override
+	public I_StorageInfo getStorageInfo() {
+		if (org == null) {
+			return null;
+		}
+		return org.getStorageInfo();
+	}
+
+	@Override
+	public Integer getVersion() {
+		if (org == null) {
+			return null;
+		}
+		return org.getVersion();
+	}
+
+	@Override
+	public I_Organization toImmutable() throws ValidationException {
+		if (org == null) {
+			return null;
+		}
+		return org.toImmutable();
+	}
+
+	@Override
+	public I_OrganizationMutant toMutant() throws ValidationException {
+		if (org == null) {
+			return null;
+		}
+		return org.toMutant();
 	}
 
 }

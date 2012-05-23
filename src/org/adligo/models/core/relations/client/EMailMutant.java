@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
+import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
@@ -20,14 +21,15 @@ public class EMailMutant implements I_EMail {
 	public static final String ADD_TO = "addTo";
 
 	public static final String SET_FROM = "setFrom";
-	protected I_StorageIdentifier id;
-	protected EMailAddress from;
-	protected String subject;
-	protected String body;
-	protected Set<EMailAddress> toAddresses = new HashSet<EMailAddress>();
-	protected Set<EMailAddress> ccAddresses = new HashSet<EMailAddress>();
-	protected Set<EMailAddress> bccAddresses = new HashSet<EMailAddress>();
-	protected Set<I_StorageIdentifier> attachments = new HashSet<I_StorageIdentifier>();
+	private I_StorageIdentifier id;
+	private I_StorageInfo storageInfo;
+	private EMailAddress from;
+	private String subject;
+	private String body;
+	private Set<EMailAddress> toAddresses = new HashSet<EMailAddress>();
+	private Set<EMailAddress> ccAddresses = new HashSet<EMailAddress>();
+	private Set<EMailAddress> bccAddresses = new HashSet<EMailAddress>();
+	private Set<I_StorageIdentifier> attachments = new HashSet<I_StorageIdentifier>();
 	
 	public EMailMutant() {}
 	
@@ -226,5 +228,10 @@ public class EMailMutant implements I_EMail {
 					ModelsCoreConstantsObtainer.getConstants().getStorageIdRequired(), SET_ID);
 		}
 		this.id = id;
+	}
+
+	@Override
+	public I_StorageInfo getStorageInfo() {
+		return storageInfo;
 	}
 }
