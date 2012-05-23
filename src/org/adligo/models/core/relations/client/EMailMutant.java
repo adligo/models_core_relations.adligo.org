@@ -225,6 +225,6 @@ public class EMailMutant implements I_EMail {
 			throw new InvalidParameterException(
 					ModelsCoreConstantsObtainer.getConstants().getStorageIdRequired(), SET_ID);
 		}
-		this.id = id.toImmutable();
+		this.id = id;
 	}
 }

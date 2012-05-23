@@ -43,23 +43,18 @@ public class EMail implements I_EMail, I_Immutable {
 		Set<I_StorageIdentifier> toRet = new HashSet<I_StorageIdentifier>();
 		attachments = new HashSet<I_StorageIdentifier>();
 		for (I_StorageIdentifier id: other.getAttachments()) {
-			toRet.add(id.toImmutable());
+			toRet.add(id);
 		}
 		attachments = Collections.unmodifiableSet(attachments);
 		I_StorageIdentifier otherId = other.getId();
 		if (id != null) {
-			id = otherId.toImmutable();
+			id = otherId;
 		}
 	}
 	@Override
 	public I_StorageIdentifier getId() {
 		I_StorageIdentifier id = mutant.getId();
-		try {
-			id.toImmutable();
-		} catch (InvalidParameterException e) {
-			throw new IllegalStateException("There was a problem turning the follwing object into a immutable " +id);
-		}
-		return null;
+		return id;
 	}
 	
 	@Override
