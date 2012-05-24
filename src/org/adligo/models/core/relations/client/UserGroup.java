@@ -54,7 +54,7 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 		return org.getName();
 	}
 
-	public I_NamedId getType() {
+	public I_StorageIdentifier getType() {
 		return org.getType();
 	}
 

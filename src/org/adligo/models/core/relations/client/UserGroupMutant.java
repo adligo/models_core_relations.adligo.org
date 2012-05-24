@@ -87,7 +87,7 @@ public class UserGroupMutant implements I_UserGroup {
 		return null;
 	}
 
-	public I_NamedId getType() {
+	public I_StorageIdentifier getType() {
 		if (org != null) {
 			return org.getType();
 		}
