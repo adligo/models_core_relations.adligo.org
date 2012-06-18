@@ -10,6 +10,7 @@ import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
+import org.adligo.models.core.client.ids.StorageIdentifierValidator;
 
 public class EMailMutant implements I_EMail {
 	private static final long serialVersionUID = 1L;
@@ -222,12 +223,9 @@ public class EMailMutant implements I_EMail {
 		return id;
 	}
 
-	public void setId(I_StorageIdentifier id) throws InvalidParameterException {
-		if (id == null) {
-			throw new InvalidParameterException(
-					ModelsCoreConstantsObtainer.getConstants().getStorageIdRequired(), SET_ID);
-		}
-		this.id = id;
+	public void setId(I_StorageIdentifier p) throws InvalidParameterException {
+		StorageIdentifierValidator.validateId(p, this.getClass(), SET_ID);
+		id = p;
 	}
 
 	@Override
