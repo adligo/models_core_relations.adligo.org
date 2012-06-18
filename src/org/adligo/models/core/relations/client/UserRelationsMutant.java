@@ -11,6 +11,7 @@ import org.adligo.models.core.client.DomainName;
 import org.adligo.models.core.client.EMailAddress;
 import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_Person;
+import org.adligo.models.core.client.I_Storable;
 import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.I_User;
 import org.adligo.models.core.client.I_UserMutant;
@@ -18,6 +19,7 @@ import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
 import org.adligo.models.core.client.Person;
+import org.adligo.models.core.client.StorableValidator;
 import org.adligo.models.core.client.UserMutant;
 import org.adligo.models.core.client.ValidationException;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
@@ -386,5 +388,9 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	@Override
 	public I_UserMutant toMutant() throws ValidationException {
 		return user.toMutant();
+	}
+
+	public boolean isStored() throws ValidationException {
+		return StorableValidator.validate(this, I_Storable.IS_STORED);
 	}
 }

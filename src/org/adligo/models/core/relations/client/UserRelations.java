@@ -146,6 +146,11 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 	public I_UserMutant toMutant() throws ValidationException {
 		return user.toMutant();
 	}
+
+	@Override
+	public boolean isStored() throws ValidationException {
+		return wrapped.isStored();
+	}
 	
 	
 }

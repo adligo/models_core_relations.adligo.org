@@ -10,10 +10,12 @@ import org.adligo.models.core.client.I_CustomInfo;
 import org.adligo.models.core.client.I_NamedId;
 import org.adligo.models.core.client.I_Organization;
 import org.adligo.models.core.client.I_OrganizationMutant;
+import org.adligo.models.core.client.I_Storable;
 import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.client.Organization;
+import org.adligo.models.core.client.StorableValidator;
 import org.adligo.models.core.client.ValidationException;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 
@@ -94,11 +96,10 @@ public class UserGroupMutant implements I_UserGroup {
 		return null;
 	}
 
-	public boolean isValid() {
+	public void isValid() throws ValidationException{
 		if (org != null) {
-			return org.isValid();
+			org.isValid();
 		}
-		return false;
 	}
 	
 	public String toString() {
@@ -164,4 +165,7 @@ public class UserGroupMutant implements I_UserGroup {
 		return org.toMutant();
 	}
 
+	public boolean isStored() throws ValidationException {
+		return StorableValidator.validate(this, I_Storable.IS_STORED);
+	}
 }

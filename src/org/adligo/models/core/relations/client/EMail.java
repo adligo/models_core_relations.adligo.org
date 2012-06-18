@@ -112,4 +112,9 @@ public class EMail implements I_EMail, I_Immutable {
 		return storageInfo;
 	}
 
+	@Override
+	public boolean isStored() throws ValidationException {
+		return mutant.isStored();
+	}
+
 }

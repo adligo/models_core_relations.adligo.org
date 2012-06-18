@@ -59,8 +59,8 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 	}
 
 	@Override
-	public boolean isValid() throws ValidationException {
-		return mutant.isValid();
+	public void isValid() throws ValidationException {
+		mutant.isValid();
 	}
 
 	@Override
@@ -90,5 +90,9 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 
 	public Integer getVersion() {
 		return org.getVersion();
+	}
+
+	public boolean isStored() throws ValidationException {
+		return mutant.isStored();
 	}
 }

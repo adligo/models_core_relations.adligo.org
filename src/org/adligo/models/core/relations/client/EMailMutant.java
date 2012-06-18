@@ -6,9 +6,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.adligo.models.core.client.EMailAddress;
+import org.adligo.models.core.client.I_Storable;
 import org.adligo.models.core.client.I_StorageInfo;
 import org.adligo.models.core.client.InvalidParameterException;
 import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
+import org.adligo.models.core.client.StorableValidator;
+import org.adligo.models.core.client.ValidationException;
 import org.adligo.models.core.client.ids.I_StorageIdentifier;
 import org.adligo.models.core.client.ids.StorageIdentifierValidator;
 
@@ -235,5 +238,9 @@ public class EMailMutant implements I_EMail {
 	
 	public void setStorageInfo(I_StorageInfo info) throws InvalidParameterException {
 		storageInfo = info;
+	}
+
+	public boolean isStored() throws ValidationException {
+		return StorableValidator.validate(this, I_Storable.IS_STORED);
 	}
 }
