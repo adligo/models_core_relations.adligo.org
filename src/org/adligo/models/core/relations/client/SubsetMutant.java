@@ -22,8 +22,13 @@ public class SubsetMutant <T> implements List<T>, I_Subset<T>, I_SubsetMutant<T>
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * (the total actual ordered results)
+	 * (the total actual ordered unique results)
 	 * which may be null (if it was not requsted for)
+	 * 
+	 * This is used to identify the total results if this is a page of results
+	 * ie if there are 10,000 results and 100 objects of those are contained
+	 * here
+	 * 
 	 */
 	private Integer totalRecords;
 	/**
@@ -75,16 +80,26 @@ public class SubsetMutant <T> implements List<T>, I_Subset<T>, I_SubsetMutant<T>
 		items.add(arg0, arg1);
 	}
 	public boolean add(T arg0) {
-		return items.add(arg0);
+		if (items.add(arg0)) {
+			return true;
+		}
+		return false;
 	}
 	public boolean addAll(Collection<? extends T> arg0) {
-		return items.addAll(arg0);
+		if (items.addAll(arg0)) {
+			return true;
+		}
+		return false;
 	}
 	public boolean addAll(int arg0, Collection<? extends T> arg1) {
-		return items.addAll(arg0, arg1);
+		if (items.addAll(arg0, arg1)) {
+			return true;
+		}
+		return false;
 	}
 	public void clear() {
 		items.clear();
+		totalRecords = 0;
 	}
 	public Object clone() {
 		return items.clone();
@@ -126,16 +141,26 @@ public class SubsetMutant <T> implements List<T>, I_Subset<T>, I_SubsetMutant<T>
 		return items.listIterator(arg0);
 	}
 	public T remove(int arg0) {
-		return items.remove(arg0);
+		T item = items.remove(arg0);
+		return item;
 	}
 	public boolean remove(Object arg0) {
-		return items.remove(arg0);
+		if (items.remove(arg0)) {
+			return true;
+		}
+		return false;
 	}
 	public boolean removeAll(Collection<?> arg0) {
-		return items.removeAll(arg0);
+		if (items.removeAll(arg0)) {
+			return true;
+		}
+		return false;
 	}
 	public boolean retainAll(Collection<?> arg0) {
-		return items.retainAll(arg0);
+		if (items.retainAll(arg0)) {
+			return true;
+		}
+		return false;
 	}
 	public T set(int arg0, T arg1) {
 		return items.set(arg0, arg1);
