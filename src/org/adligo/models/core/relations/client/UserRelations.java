@@ -115,12 +115,12 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 	}
 
 	public Set<String> getGroups() {
-		return groups;
+		return new HashSet<String>(groups);
 	}
 
 
 	public Set<String> getRoles() {
-		return roles;
+		return new HashSet<String>(roles);
 	}
 
 	public I_User getUser() {
