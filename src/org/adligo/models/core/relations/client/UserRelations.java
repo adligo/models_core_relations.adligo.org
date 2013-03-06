@@ -63,8 +63,8 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 		if (org != null) {
 			org = new Organization(org);
 		}
-		roles = Collections.unmodifiableSet(new HashSet<String>(p.getRoles()));
-		groups = Collections.unmodifiableSet(new HashSet<String>(p.getGroups()));
+		roles = new HashSet<String>(p.getRoles());
+		groups = new HashSet<String>(p.getGroups());
 	}
 
 
