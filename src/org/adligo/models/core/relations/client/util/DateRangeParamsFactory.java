@@ -76,7 +76,7 @@ public class DateRangeParamsFactory {
 	 * @param drs
 	 * @param fieldName
 	 */
-	public static void addDateTimeRangeParams(Params params, Collection<I_DateRange> drs, String fieldName) {
+	public static void addDateTimeRangeParams(Params params, Collection<? extends I_DateRange> drs, String fieldName) {
 		if (drs.size() > 0) {
 			Params rangesParams = new Params();
 			params.addParam(fieldName + "_ranges", rangesParams);
@@ -93,7 +93,7 @@ public class DateRangeParamsFactory {
 	 * @param drs
 	 * @param fieldName
 	 */
-	public static void addDateRangeParams(Params params, Collection<I_DateRange> drs, String fieldName) {
+	public static void addDateRangeParams(Params params, Collection<? extends I_DateRange> drs, String fieldName) {
 		if (drs.size() > 0) {
 			Params rangesParams = new Params();
 			params.addParam(fieldName + "_ranges", rangesParams);
