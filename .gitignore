@@ -1,1 +1,4 @@
-/classes_e
+classes_e/
+bin/
+classes/
+models_core_relations*.jar

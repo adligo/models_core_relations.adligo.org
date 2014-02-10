@@ -1,4 +1,4 @@
-package org.adligo.models.core.client.i18n;
+package org.adligo.models.core.relations.client.i18n;
 
 import org.adligo.i.adi.client.I18nConstantsFactory;
 import org.adligo.i.adi.client.I_Invoker;
