@@ -1,11 +1,11 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.Collection;
 
-import org.adligo.models.core.client.I_Organization;
-import org.adligo.models.core.client.I_Person;
-import org.adligo.models.core.client.I_User;
-import org.adligo.models.core.client.InvalidParameterException;
+import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_Person;
+import org.adligo.models.core.shared.I_User;
+import org.adligo.models.core.shared.InvalidParameterException;
 
 public interface I_UserRelationsMutant extends I_UserRelations {
 	public void setRoles(Collection<String> p) throws InvalidParameterException ;

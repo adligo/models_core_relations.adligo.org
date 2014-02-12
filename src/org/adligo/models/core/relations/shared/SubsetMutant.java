@@ -1,4 +1,4 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.ArrayList;
 import java.util.Collection;

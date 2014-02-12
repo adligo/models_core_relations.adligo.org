@@ -1,28 +1,28 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.i.util.client.ClassUtils;
-import org.adligo.i.util.client.StringUtils;
-import org.adligo.models.core.client.DomainName;
-import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_Organization;
-import org.adligo.models.core.client.I_Person;
-import org.adligo.models.core.client.I_Storable;
-import org.adligo.models.core.client.I_StorageInfo;
-import org.adligo.models.core.client.I_User;
-import org.adligo.models.core.client.I_UserMutant;
-import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.client.Organization;
-import org.adligo.models.core.client.Person;
-import org.adligo.models.core.client.StorableValidator;
-import org.adligo.models.core.client.UserMutant;
-import org.adligo.models.core.client.ValidationException;
-import org.adligo.models.core.client.ids.I_StorageIdentifier;
+import org.adligo.i.util.shared.ClassUtils;
+import org.adligo.i.util.shared.StringUtils;
+import org.adligo.models.core.shared.DomainName;
+import org.adligo.models.core.shared.EMailAddress;
+import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_Person;
+import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageInfo;
+import org.adligo.models.core.shared.I_User;
+import org.adligo.models.core.shared.I_UserMutant;
+import org.adligo.models.core.shared.InvalidParameterException;
+import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
+import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.Person;
+import org.adligo.models.core.shared.StorableValidator;
+import org.adligo.models.core.shared.UserMutant;
+import org.adligo.models.core.shared.ValidationException;
+import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 /**
  * A class that represents all of the possible relations

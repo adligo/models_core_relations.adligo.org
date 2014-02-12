@@ -1,12 +1,12 @@
-package org.adligo.models.core.relations.client.util;
+package org.adligo.models.core.relations.shared.util;
 
 import java.util.Collection;
 import java.util.Date;
 
-import org.adligo.i.util.client.DateTime;
-import org.adligo.models.core.client.util.I_DateRange;
-import org.adligo.models.params.client.Params;
-import org.adligo.models.params.client.SqlOperators;
+import org.adligo.i.util.shared.DateTime;
+import org.adligo.models.core.shared.util.I_DateRange;
+import org.adligo.models.params.shared.Params;
+import org.adligo.models.params.shared.SqlOperators;
 
 public class DateRangeParamsFactory {
 

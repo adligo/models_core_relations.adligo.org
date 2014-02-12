@@ -1,24 +1,24 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.i.util.client.I_Immutable;
-import org.adligo.models.core.client.DomainName;
-import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_Organization;
-import org.adligo.models.core.client.I_Person;
-import org.adligo.models.core.client.I_Storable;
-import org.adligo.models.core.client.I_StorageInfo;
-import org.adligo.models.core.client.I_User;
-import org.adligo.models.core.client.I_UserMutant;
-import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.Organization;
-import org.adligo.models.core.client.Person;
-import org.adligo.models.core.client.User;
-import org.adligo.models.core.client.ValidationException;
-import org.adligo.models.core.client.ids.I_StorageIdentifier;
+import org.adligo.i.util.shared.I_Immutable;
+import org.adligo.models.core.shared.DomainName;
+import org.adligo.models.core.shared.EMailAddress;
+import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_Person;
+import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageInfo;
+import org.adligo.models.core.shared.I_User;
+import org.adligo.models.core.shared.I_UserMutant;
+import org.adligo.models.core.shared.InvalidParameterException;
+import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.Person;
+import org.adligo.models.core.shared.User;
+import org.adligo.models.core.shared.ValidationException;
+import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 
 public class UserRelations implements I_UserRelations, I_Immutable {

@@ -1,23 +1,23 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.i.util.client.ClassUtils;
-import org.adligo.i.util.client.StringUtils;
-import org.adligo.models.core.client.I_CustomInfo;
-import org.adligo.models.core.client.I_NamedId;
-import org.adligo.models.core.client.I_Organization;
-import org.adligo.models.core.client.I_OrganizationMutant;
-import org.adligo.models.core.client.I_Storable;
-import org.adligo.models.core.client.I_StorageInfo;
-import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.client.Organization;
-import org.adligo.models.core.client.StorableValidator;
-import org.adligo.models.core.client.ValidationException;
-import org.adligo.models.core.client.ids.I_StorageIdentifier;
+import org.adligo.i.util.shared.ClassUtils;
+import org.adligo.i.util.shared.StringUtils;
+import org.adligo.models.core.shared.I_CustomInfo;
+import org.adligo.models.core.shared.I_NamedId;
+import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_OrganizationMutant;
+import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageInfo;
+import org.adligo.models.core.shared.InvalidParameterException;
+import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
+import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.StorableValidator;
+import org.adligo.models.core.shared.ValidationException;
+import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 public class UserGroupMutant implements I_UserGroup {
 	public static final String USER_GROUP = "UserGroup";

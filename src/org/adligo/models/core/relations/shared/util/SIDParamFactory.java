@@ -1,16 +1,16 @@
-package org.adligo.models.core.relations.client.util;
+package org.adligo.models.core.relations.shared.util;
 
 import java.util.Collection;
 
-import org.adligo.models.core.client.ids.I_LongIdentifier;
-import org.adligo.models.core.client.ids.I_StorageIdentifier;
-import org.adligo.models.core.client.ids.I_StringIdentifier;
-import org.adligo.models.core.client.ids.I_VersionedLongIdentifier;
-import org.adligo.models.params.client.I_TemplateParams;
-import org.adligo.models.params.client.Param;
-import org.adligo.models.params.client.Params;
-import org.adligo.models.params.client.ParamsFactory;
-import org.adligo.models.params.client.SqlOperators;
+import org.adligo.models.core.shared.ids.I_LongIdentifier;
+import org.adligo.models.core.shared.ids.I_StorageIdentifier;
+import org.adligo.models.core.shared.ids.I_StringIdentifier;
+import org.adligo.models.core.shared.ids.I_VersionedLongIdentifier;
+import org.adligo.models.params.shared.I_TemplateParams;
+import org.adligo.models.params.shared.Param;
+import org.adligo.models.params.shared.Params;
+import org.adligo.models.params.shared.ParamsFactory;
+import org.adligo.models.params.shared.SqlOperators;
 
 public class SIDParamFactory {
 

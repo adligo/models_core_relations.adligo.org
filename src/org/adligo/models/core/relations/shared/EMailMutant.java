@@ -1,19 +1,19 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_Storable;
-import org.adligo.models.core.client.I_StorageInfo;
-import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.client.StorableValidator;
-import org.adligo.models.core.client.ValidationException;
-import org.adligo.models.core.client.ids.I_StorageIdentifier;
-import org.adligo.models.core.client.ids.StorageIdentifierValidator;
+import org.adligo.models.core.shared.EMailAddress;
+import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageInfo;
+import org.adligo.models.core.shared.InvalidParameterException;
+import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
+import org.adligo.models.core.shared.StorableValidator;
+import org.adligo.models.core.shared.ValidationException;
+import org.adligo.models.core.shared.ids.I_StorageIdentifier;
+import org.adligo.models.core.shared.ids.StorageIdentifierValidator;
 
 public class EMailMutant implements I_EMail {
 	private static final long serialVersionUID = 1L;

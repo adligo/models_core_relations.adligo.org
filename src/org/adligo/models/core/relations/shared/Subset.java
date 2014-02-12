@@ -1,8 +1,8 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.ArrayList;
 
-import org.adligo.i.util.client.I_Immutable;
+import org.adligo.i.util.shared.I_Immutable;
 
 public class Subset <T> implements I_Subset<T>, I_Immutable{
 	/**

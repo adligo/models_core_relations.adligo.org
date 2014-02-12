@@ -1,12 +1,12 @@
-package org.adligo.models.core.relations.client;
+package org.adligo.models.core.relations.shared;
 
 import java.util.Collection;
 import java.util.Set;
 
-import org.adligo.models.core.client.EMailAddress;
-import org.adligo.models.core.client.I_Storable;
-import org.adligo.models.core.client.InvalidParameterException;
-import org.adligo.models.core.client.ids.I_StorageIdentifier;
+import org.adligo.models.core.shared.EMailAddress;
+import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.InvalidParameterException;
+import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 public interface I_EMailMutant extends I_Storable {
 	public void setFrom(EMailAddress address) throws InvalidParameterException;

@@ -1,8 +1,8 @@
-package org.adligo.models.core.relations.client.i18n;
+package org.adligo.models.core.relations.shared.i18n;
 
 import org.adligo.i.adi.client.I18nConstantsFactory;
 import org.adligo.i.adi.client.I_Invoker;
-import org.adligo.models.core.client.I_ModelsCoreConstants;
+import org.adligo.models.core.shared.I_ModelsCoreConstants;
 
 import com.google.gwt.core.client.GWT;
 
