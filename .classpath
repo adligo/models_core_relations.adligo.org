@@ -6,8 +6,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/i_util"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/params"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i_log"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/adi"/>
-	
-		<classpathentry kind="var" path="MVN_REPO/com/google/gwt/gwt-user/2.5.0/gwt-user-2.5.0.jar"/>	
+	<classpathentry kind="var" path="MVN_REPO/com/google/gwt/gwt-user/2.5.0/gwt-user-2.5.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/i_adi"/>
 	<classpathentry kind="output" path="classes_e"/>
 </classpath>
