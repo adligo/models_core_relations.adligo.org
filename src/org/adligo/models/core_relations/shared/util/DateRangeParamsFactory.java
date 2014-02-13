@@ -1,4 +1,4 @@
-package org.adligo.models.core.relations.shared.util;
+package org.adligo.models.core_relations.shared.util;
 
 import java.util.Collection;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package org.adligo.models.core.relations.shared;
+package org.adligo.models.core_relations.shared;
 
 import java.util.Collection;
 import java.util.HashSet;

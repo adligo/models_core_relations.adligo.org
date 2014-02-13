@@ -1,4 +1,4 @@
-package org.adligo.models.core.relations.shared.i18n;
+package org.adligo.models.core_relations.shared.i18n;
 
 import org.adligo.models.core.shared.I_ModelsCoreConstants;
 
