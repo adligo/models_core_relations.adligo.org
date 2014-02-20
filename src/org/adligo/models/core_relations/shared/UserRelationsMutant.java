@@ -12,6 +12,7 @@ import org.adligo.models.core.shared.EMailAddress;
 import org.adligo.models.core.shared.I_Organization;
 import org.adligo.models.core.shared.I_Person;
 import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.I_User;
 import org.adligo.models.core.shared.I_UserMutant;
@@ -22,7 +23,6 @@ import org.adligo.models.core.shared.Person;
 import org.adligo.models.core.shared.StorableValidator;
 import org.adligo.models.core.shared.UserMutant;
 import org.adligo.models.core.shared.ValidationException;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 /**
  * A class that represents all of the possible relations
@@ -39,10 +39,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	public static final String ADD_ROLE = "addRole";
 	public static final String CONSTRUCTOR = "Constructor";
 	public static final String CONSTRUCTOR_REQUIRES_USER = "The constructor requires a user object";
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	
 	/**
 	 * the list of roles in all of the groups
@@ -232,7 +229,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 		return toString(this.getClass());
 	}
 	
-	public String toString(Class c) {
+	public String toString(Class<?> c) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(ClassUtils.getClassShortName(c));
 		sb.append(" [user=");
@@ -334,7 +331,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 				if (other.getGroups() != null)
 					return false;
 			} else {
-				Collection otherGroups = other.getGroups();
+				Collection<?> otherGroups = other.getGroups();
 				if (groups.size() != otherGroups.size()) {
 					return false;
 				}
@@ -356,7 +353,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 				if (other.getRoles() != null)
 					return false;
 			} else {
-				Collection otherRoles = other.getRoles();
+				Collection<?> otherRoles = other.getRoles();
 				if (roles.size() != otherRoles.size()) {
 					return false;
 				}

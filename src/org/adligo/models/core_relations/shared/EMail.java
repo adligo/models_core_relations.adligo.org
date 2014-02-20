@@ -6,11 +6,10 @@ import java.util.Set;
 
 import org.adligo.i.util.shared.I_Immutable;
 import org.adligo.models.core.shared.EMailAddress;
+import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
-import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.shared.ValidationException;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 /**
  * represents a email message,
@@ -29,10 +28,7 @@ import org.adligo.models.core.shared.ids.I_StorageIdentifier;
  *
  */
 public class EMail implements I_EMail, I_Immutable {
-/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private EMailMutant mutant;
 	private I_StorageIdentifier id;
 	private I_StorageInfo storageInfo;

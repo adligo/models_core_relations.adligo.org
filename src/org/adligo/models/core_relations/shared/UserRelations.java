@@ -9,7 +9,7 @@ import org.adligo.models.core.shared.DomainName;
 import org.adligo.models.core.shared.EMailAddress;
 import org.adligo.models.core.shared.I_Organization;
 import org.adligo.models.core.shared.I_Person;
-import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.I_User;
 import org.adligo.models.core.shared.I_UserMutant;
@@ -18,15 +18,10 @@ import org.adligo.models.core.shared.Organization;
 import org.adligo.models.core.shared.Person;
 import org.adligo.models.core.shared.User;
 import org.adligo.models.core.shared.ValidationException;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 
 public class UserRelations implements I_UserRelations, I_Immutable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private UserRelationsMutant wrapped;
 	@SuppressWarnings("unchecked")
 	private Set<String> roles = Collections.EMPTY_SET;

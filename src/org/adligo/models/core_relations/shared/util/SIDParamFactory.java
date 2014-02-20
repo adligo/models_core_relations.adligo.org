@@ -2,10 +2,10 @@ package org.adligo.models.core_relations.shared.util;
 
 import java.util.Collection;
 
-import org.adligo.models.core.shared.ids.I_LongIdentifier;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
-import org.adligo.models.core.shared.ids.I_StringIdentifier;
-import org.adligo.models.core.shared.ids.I_VersionedLongIdentifier;
+import org.adligo.models.core.shared.I_StorageIdentifier;
+import org.adligo.models.core_relations.shared.ids.I_LongIdentifier;
+import org.adligo.models.core_relations.shared.ids.I_StringIdentifier;
+import org.adligo.models.core_relations.shared.ids.I_VersionedLongIdentifier;
 import org.adligo.models.params.shared.I_TemplateParams;
 import org.adligo.models.params.shared.Param;
 import org.adligo.models.params.shared.Params;

@@ -7,26 +7,21 @@ import java.util.Set;
 import org.adligo.i.util.shared.ClassUtils;
 import org.adligo.i.util.shared.StringUtils;
 import org.adligo.models.core.shared.I_CustomInfo;
-import org.adligo.models.core.shared.I_NamedId;
 import org.adligo.models.core.shared.I_Organization;
 import org.adligo.models.core.shared.I_OrganizationMutant;
 import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
 import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.shared.Organization;
 import org.adligo.models.core.shared.StorableValidator;
 import org.adligo.models.core.shared.ValidationException;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 public class UserGroupMutant implements I_UserGroup {
 	public static final String USER_GROUP = "UserGroup";
 	public static final String ADD_ROLE = "addRole";
 	public static final String ADD_ALL_ROLES = "addAllRoles";
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	/**
 	 * id is handled by org
 	 */
@@ -106,7 +101,7 @@ public class UserGroupMutant implements I_UserGroup {
 		return toString(this.getClass());
 	}
 	
-	public String toString(Class c) {
+	public String toString(Class<?> c) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(ClassUtils.getClassShortName(c));
 		sb.append(" [org=");

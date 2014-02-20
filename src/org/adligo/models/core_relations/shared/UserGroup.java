@@ -1,30 +1,18 @@
 package org.adligo.models.core_relations.shared;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
-import org.adligo.i.util.shared.ClassUtils;
 import org.adligo.i.util.shared.I_Immutable;
-import org.adligo.i.util.shared.StringUtils;
 import org.adligo.models.core.shared.I_CustomInfo;
-import org.adligo.models.core.shared.I_NamedId;
 import org.adligo.models.core.shared.I_Organization;
 import org.adligo.models.core.shared.I_OrganizationMutant;
+import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
-import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.shared.Organization;
 import org.adligo.models.core.shared.ValidationException;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
 
 
 public class UserGroup implements I_UserGroup, I_Immutable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private UserGroupMutant mutant;
 	private I_Organization org;
 	

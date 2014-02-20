@@ -7,16 +7,15 @@ import java.util.Set;
 
 import org.adligo.models.core.shared.EMailAddress;
 import org.adligo.models.core.shared.I_Storable;
+import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
 import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
 import org.adligo.models.core.shared.StorableValidator;
 import org.adligo.models.core.shared.ValidationException;
-import org.adligo.models.core.shared.ids.I_StorageIdentifier;
-import org.adligo.models.core.shared.ids.StorageIdentifierValidator;
+import org.adligo.models.core.shared.util.StorageIdentifierValidator;
 
 public class EMailMutant implements I_EMail {
-	private static final long serialVersionUID = 1L;
 	public static final String SET_ID = "setId";
 	public static final String ADD_ATTACHMENT = "addAttachment";
 	public static final String E_MAIL = "EMail";
