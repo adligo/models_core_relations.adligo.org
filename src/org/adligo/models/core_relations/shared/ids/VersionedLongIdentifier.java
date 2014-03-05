@@ -2,7 +2,7 @@ package org.adligo.models.core_relations.shared.ids;
 
 import org.adligo.i.adi.shared.I_Cacheable;
 import org.adligo.i.util.shared.I_Immutable;
-import org.adligo.models.core.shared.I_Changeable;
+import org.adligo.models.core.shared.I_Versioned;
 import org.adligo.models.core.shared.I_Storable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.InvalidParameterException;
@@ -28,7 +28,7 @@ public class VersionedLongIdentifier implements I_VersionedLongIdentifier, I_Imm
 		}
 	}
 
-	public VersionedLongIdentifier(I_Changeable p) throws InvalidParameterException {
+	public VersionedLongIdentifier(I_Versioned p) throws InvalidParameterException {
 		vim = new VersionedLongIdentifierMutant(p);
 		try {
 			vim.isValid();

@@ -1,7 +1,7 @@
 package org.adligo.models.core_relations.shared.ids;
 
 import org.adligo.i.adi.shared.I_Cacheable;
-import org.adligo.models.core.shared.I_Changeable;
+import org.adligo.models.core.shared.I_Versioned;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_Validateable;
 import org.adligo.models.core.shared.InvalidParameterException;
@@ -41,7 +41,7 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 		setVersion(vi.getVersion());
 	}
 	
-	public VersionedLongIdentifierMutant(I_Changeable p) throws InvalidParameterException {
+	public VersionedLongIdentifierMutant(I_Versioned p) throws InvalidParameterException {
 		if (p == null) {
 			throw new InvalidParameterException(DOES_NOT_ACCEPT_NULLS, 
 					CONSTRUCTOR);
