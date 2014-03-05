@@ -35,6 +35,21 @@ public class StringIdentifier implements I_StringIdentifier, I_Immutable {
 		return mut.getKey();
 	}
 
+	/**
+	 * Note this method is used by Hibernate which
+	 * can access this method 
+	 * It would be nice if Hibernate could allow constructor
+	 * parameters and not just property parameters.
+	 * I can't seem to log into the hibernate forum anymore to suggest this :(
+	 * 
+	 * @param p
+	 * @throws InvalidParameterException
+	 */
+	@SuppressWarnings("unused")
+	private void setKey(String p) throws InvalidParameterException {
+		mut.setKey(p);
+	}
+	
 	public boolean hasValue() {
 		return mut.hasValue();
 	}

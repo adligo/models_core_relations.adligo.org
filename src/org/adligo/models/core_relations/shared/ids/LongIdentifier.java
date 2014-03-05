@@ -18,7 +18,7 @@ public class LongIdentifier implements I_LongIdentifier, I_Immutable {
 	public LongIdentifier(I_LongIdentifier o) throws InvalidParameterException {
 		mut = new LongIdentifierMutant(o);
 	}
-	
+
 	public LongIdentifier(Long o) throws InvalidParameterException {
 		mut = new LongIdentifierMutant(o);
 	}
@@ -39,6 +39,21 @@ public class LongIdentifier implements I_LongIdentifier, I_Immutable {
 		return mut.getId();
 	}
 
+	/**
+	 * Note this method is used by Hibernate which
+	 * can access this method 
+	 * It would be nice if Hibernate could allow constructor
+	 * parameters and not just property parameters.
+	 * I can't seem to log into the hibernate forum anymore to suggest this :(
+	 * 
+	 * @param p
+	 * @throws InvalidParameterException
+	 */
+	@SuppressWarnings("unused")
+	private void setId(Long p) throws InvalidParameterException {
+		mut.setId(p);
+	}
+	
 	public boolean hasValue() {
 		return mut.hasValue();
 	}

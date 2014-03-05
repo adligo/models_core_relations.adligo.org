@@ -35,10 +35,39 @@ public class VersionedLongIdentifier implements I_VersionedLongIdentifier, I_Imm
 		return vim.getId();
 	}
 
+	/**
+	 * Note this method is used by Hibernate which
+	 * can access this method 
+	 * It would be nice if Hibernate could allow constructor
+	 * parameters and not just property parameters.
+	 * I can't seem to log into the hibernate forum anymore to suggest this :(
+	 * 
+	 * @param p
+	 * @throws InvalidParameterException
+	 */
+	@SuppressWarnings("unused")
+	private void setId(Long p) throws InvalidParameterException {
+		vim.setId(p);
+	}
 	public Integer getVersion() {
 		return vim.getVersion();
 	}
 
+	/**
+	 * Note this method is used by Hibernate which
+	 * can access this method 
+	 * It would be nice if Hibernate could allow constructor
+	 * parameters and not just property parameters.
+	 * I can't seem to log into the hibernate forum anymore to suggest this :(
+	 * 
+	 * @param p
+	 * @throws InvalidParameterException
+	 */
+	@SuppressWarnings("unused")
+	private void setVersion(Integer p) throws InvalidParameterException {
+		vim.setVersion(p);
+	}
+	
 	public boolean equals(Object obj) {
 		return vim.equals(obj);
 	}
