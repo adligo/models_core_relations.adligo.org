@@ -144,22 +144,6 @@ public class UserGroupMutant implements I_UserGroup {
 		return org.getVersion();
 	}
 
-	@Override
-	public I_Organization toImmutable() throws ValidationException {
-		if (org == null) {
-			return null;
-		}
-		return org.toImmutable();
-	}
-
-	@Override
-	public I_OrganizationMutant toMutant() throws ValidationException {
-		if (org == null) {
-			return null;
-		}
-		return org.toMutant();
-	}
-
 	public boolean isStored() throws ValidationException {
 		return StorableValidator.validate(this, I_Storable.IS_STORED);
 	}
