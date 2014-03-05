@@ -56,7 +56,7 @@ public class StringIdentifierMutant implements I_StringIdentifier {
 		return key.hashCode();
 	}
 	
-	private void setKey(String p_key) throws InvalidParameterException {
+	public void setKey(String p_key) throws InvalidParameterException {
 		if (StringUtils.isEmpty(p_key)) {
 			throw new InvalidParameterException(KEY_CANT_BE_SET_TO_EMPTY, SET_KEY);
 		}
