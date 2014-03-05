@@ -4,7 +4,7 @@ import org.adligo.i.util.shared.I_Immutable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.InvalidParameterException;
 
-public class StringIdentifier implements I_StringIdentifier {
+public class StringIdentifier implements I_StringIdentifier, I_Immutable {
 	/**
 	 * 
 	 */

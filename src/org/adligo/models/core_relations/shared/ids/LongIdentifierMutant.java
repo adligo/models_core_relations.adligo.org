@@ -40,7 +40,7 @@ public class LongIdentifierMutant implements I_LongIdentifier {
 		setId(p);
 	}
 	
-	private void setId(Long p) throws InvalidParameterException {
+	public void setId(Long p) throws InvalidParameterException {
 		if (p == null) {
 			throw new InvalidParameterException(TYPE, ID_CANT_BE_SET_TO_NULL);
 		}
