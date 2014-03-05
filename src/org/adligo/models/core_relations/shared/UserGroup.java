@@ -66,10 +66,6 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 		return org.getStorageInfo();
 	}
 
-	public Integer getVersion() {
-		return org.getVersion();
-	}
-
 	public boolean isStored() throws ValidationException {
 		return mutant.isStored();
 	}

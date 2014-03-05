@@ -136,13 +136,6 @@ public class UserGroupMutant implements I_UserGroup {
 		return org.getStorageInfo();
 	}
 
-	@Override
-	public Integer getVersion() {
-		if (org == null) {
-			return null;
-		}
-		return org.getVersion();
-	}
 
 	public boolean isStored() throws ValidationException {
 		return StorableValidator.validate(this, I_Storable.IS_STORED);
