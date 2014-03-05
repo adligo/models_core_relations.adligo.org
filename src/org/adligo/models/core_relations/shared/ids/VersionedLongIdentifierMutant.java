@@ -2,7 +2,9 @@ package org.adligo.models.core_relations.shared.ids;
 
 import org.adligo.i.adi.shared.I_Cacheable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
+import org.adligo.models.core.shared.I_Validateable;
 import org.adligo.models.core.shared.InvalidParameterException;
+import org.adligo.models.core.shared.ValidationException;
 
 /**
  * a class that may be used as a Hibernate component
@@ -11,6 +13,14 @@ import org.adligo.models.core.shared.InvalidParameterException;
  *
  */
 public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier {
+	public static final String ID_MAY_NOT_BE_SET_TO_NULL = "Id may not be set to null.";
+	public static final String SET_ID = "setId";
+	public static final String VERSION_MAY_NOT_BE_SET_TO_NULL = "Version may not be set to null";
+	public static final String SET_VERSION = "setVersion";
+	public static final String NULL_VERSION = "Null Version";
+	public static final String NULL_ID = "Null Id";
+	public static final String DOES_NOT_ACCEPT_NULLS = "Does Not accept nulls";
+	public static final String CONSTRUCTOR = "Constructor";
 	/**
 	 * 
 	 */
@@ -21,8 +31,8 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 	public VersionedLongIdentifierMutant() {}
 	public VersionedLongIdentifierMutant(I_VersionedLongIdentifier vi) throws InvalidParameterException {
 		if (vi == null) {
-			throw new InvalidParameterException("Does Not accept nulls", 
-					"VersionedLongIdentifierMutant");
+			throw new InvalidParameterException(DOES_NOT_ACCEPT_NULLS, 
+					CONSTRUCTOR);
 		}
 		setId(vi.getId());
 		setVersion(vi.getVersion());
@@ -36,8 +46,11 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 	/* (non-Javadoc)
 	 * @see org.adligo.models.core.client.ids.I_VersionedLongIdentifierMutant#setId(org.adligo.models.core.client.ids.I_StorageIdentifier)
 	 */
-	public void setId(Long id) throws InvalidParameterException {
-		this.id = id;
+	public void setId(Long p) throws InvalidParameterException {
+		if (p == null) {
+			throw new InvalidParameterException(ID_MAY_NOT_BE_SET_TO_NULL, SET_ID);
+		}
+		this.id = p;
 	}
 	
 	/* (non-Javadoc)
@@ -49,8 +62,11 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 	/* (non-Javadoc)
 	 * @see org.adligo.models.core.client.ids.I_VersionedLongIdentifierMutant#setVersion(java.lang.Integer)
 	 */
-	public void setVersion(Integer version) {
-		this.version = version;
+	public void setVersion(Integer p) throws InvalidParameterException {
+		if (p == null) {
+			throw new InvalidParameterException(VERSION_MAY_NOT_BE_SET_TO_NULL, SET_VERSION);
+		}
+		version = p;
 	}
 	
 	public int hashCode() {
@@ -66,25 +82,31 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		VersionedLongIdentifierMutant other = (VersionedLongIdentifierMutant) obj;
-		if (id == null) {
-			if (other.id != null)
+		try {
+			I_VersionedLongIdentifier other = (I_VersionedLongIdentifier) obj;
+			if (id == null) {
+				if (other.getId() != null)
+					return false;
+			} else if (!id.equals(other.getId()))
 				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (version == null) {
-			if (other.version != null)
+			if (version == null) {
+				if (other.getVersion() != null)
+					return false;
+			} else if (!version.equals(other.getVersion()))
 				return false;
-		} else if (!version.equals(other.version))
-			return false;
+		} catch (ClassCastException x) {
+			//eat
+		}
 		return true;
 	}
 	
 	public String toString() {
-		return "VersionedLongIdentifierMutant [version=" + version + ", id="
-				+ id + "]";
+		return toString(VersionedLongIdentifierMutant.class);
+	}
+	
+	public String toString(Class<?> c) {
+		return c.getSimpleName() + " [id="
+				+ id + ", version=" + version + "]";
 	}
 	
 	public int getMemsize() {
@@ -110,6 +132,35 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 			return new VersionedLongIdentifier(this);
 		} catch (InvalidParameterException e) {
 			throw new RuntimeException(e.getMessage());
+		}
+	}
+	
+	@Override
+	public int compareTo(I_VersionedLongIdentifier o) {
+		if (id != null) {
+			Long oid = o.getId();
+			if (oid != null) {
+				if (id.equals(oid)) {
+					if (version != null) {
+						Integer oVersion = o.getVersion();
+						if (oVersion != null) {
+							return version.compareTo(oVersion);
+						}
+					}
+				} else {
+					return id.compareTo(oid);
+				}
+			}
+		}
+		return 0;
+	}
+	@Override
+	public void isValid() throws ValidationException {
+		if (id == null) {
+			throw new ValidationException(NULL_ID, I_Validateable.IS_VALID);
+		}
+		if (version == null) {
+			throw new ValidationException(NULL_VERSION, I_Validateable.IS_VALID);
 		}
 	}
 }

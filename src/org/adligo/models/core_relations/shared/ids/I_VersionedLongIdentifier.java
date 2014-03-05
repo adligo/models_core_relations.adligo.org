@@ -3,6 +3,7 @@ package org.adligo.models.core_relations.shared.ids;
 import java.io.Serializable;
 
 import org.adligo.models.core.shared.I_StorageIdentifier;
+import org.adligo.models.core.shared.I_Validateable;
 
 /**
  * note 
@@ -11,7 +12,8 @@ import org.adligo.models.core.shared.I_StorageIdentifier;
  * @author scott
  *
  */
-public interface I_VersionedLongIdentifier extends I_StorageIdentifier, Serializable {
+public interface I_VersionedLongIdentifier extends I_StorageIdentifier, 
+	Comparable<I_VersionedLongIdentifier>, Serializable, I_Validateable {
 
 	public abstract Long getId();
 

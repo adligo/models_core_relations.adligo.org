@@ -30,9 +30,13 @@ public class DateRangeParamsFactory {
 		Params rangeParams = new Params();
 		rangesParams.addParam(fieldName + "_range", rangeParams);
 		Long start = dr.getStart();
-		rangeParams.addParam(fieldName, SqlOperators.GREATER_THAN_EQUALS, new Date(start.longValue()));
+		if (start != null) {
+			rangeParams.addParam(fieldName, SqlOperators.GREATER_THAN_EQUALS, new Date(start.longValue()));
+		}
 		Long end = dr.getEnd();
-		rangeParams.addParam(fieldName, SqlOperators.LESS_THAN_EQUALS, new Date(end.longValue()));
+		if (end != null) {
+			rangeParams.addParam(fieldName, SqlOperators.LESS_THAN_EQUALS, new Date(end.longValue()));
+		}
 	}
 	
 	/**

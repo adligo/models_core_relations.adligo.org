@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 
 
-public interface I_StringIdentifier extends I_StorageIdentifier, Serializable {
+public interface I_StringIdentifier extends I_StorageIdentifier, Comparable<I_StringIdentifier>, Serializable {
 	/**
 	 * return the value used int the storage system
 	 * for uniqueness in the following (
