@@ -1,6 +1,7 @@
 package org.adligo.models.core_relations.shared.ids;
 
 import org.adligo.i.adi.shared.I_Cacheable;
+import org.adligo.models.core.shared.I_Changeable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_Validateable;
 import org.adligo.models.core.shared.InvalidParameterException;
@@ -13,6 +14,8 @@ import org.adligo.models.core.shared.ValidationException;
  *
  */
 public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier {
+	public static final String THE_I_CHANGEABLE_ID_MUST_BE_A_LONG_IDENTIFIER_FOR_THIS_CONSTRUCTOR = 
+					"The I_Changeable's id must be a I_LongIdentifier for this constructor.";
 	public static final String ID_MAY_NOT_BE_SET_TO_NULL = "Id may not be set to null.";
 	public static final String SET_ID = "setId";
 	public static final String VERSION_MAY_NOT_BE_SET_TO_NULL = "Version may not be set to null";
@@ -36,6 +39,42 @@ public class VersionedLongIdentifierMutant implements I_VersionedLongIdentifier 
 		}
 		setId(vi.getId());
 		setVersion(vi.getVersion());
+	}
+	
+	public VersionedLongIdentifierMutant(I_Changeable p) throws InvalidParameterException {
+		if (p == null) {
+			throw new InvalidParameterException(DOES_NOT_ACCEPT_NULLS, 
+					CONSTRUCTOR);
+		}
+		I_StorageIdentifier oid = p.getId();
+		if (oid == null) {
+			throw new InvalidParameterException(DOES_NOT_ACCEPT_NULLS, 
+					CONSTRUCTOR);
+		}
+		I_LongIdentifier lid = null;
+		try {
+			lid = (I_LongIdentifier) oid;
+		} catch (ClassCastException ce) {
+			throw new InvalidParameterException(THE_I_CHANGEABLE_ID_MUST_BE_A_LONG_IDENTIFIER_FOR_THIS_CONSTRUCTOR, 
+					CONSTRUCTOR);
+		}
+		Long lidId = lid.getId();
+		if (lidId == null) {
+			throw new InvalidParameterException(DOES_NOT_ACCEPT_NULLS, 
+					CONSTRUCTOR);
+		}
+		setId(lidId);
+		Integer lidVersion = p.getVersion();
+		if (lidVersion == null) {
+			throw new InvalidParameterException(DOES_NOT_ACCEPT_NULLS, 
+					CONSTRUCTOR);
+		}
+		setVersion(lidVersion);
+		try {
+			isValid();
+		} catch (ValidationException ve) {
+			throw new InvalidParameterException(ve);
+		}
 	}
 	/* (non-Javadoc)
 	 * @see org.adligo.models.core.client.ids.I_VersionedLongIdentifier#getId()
