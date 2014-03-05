@@ -19,6 +19,10 @@ public class LongIdentifier implements I_LongIdentifier, I_Immutable {
 		mut = new LongIdentifierMutant(o);
 	}
 	
+	public LongIdentifier(Long o) throws InvalidParameterException {
+		mut = new LongIdentifierMutant(o);
+	}
+	
 	public int hashCode() {
 		return mut.hashCode();
 	}

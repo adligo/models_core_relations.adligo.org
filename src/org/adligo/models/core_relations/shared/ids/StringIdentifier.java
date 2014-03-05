@@ -19,6 +19,10 @@ public class StringIdentifier implements I_StringIdentifier, I_Immutable {
 		mut = new StringIdentifierMutant(o);
 	}
 
+	public StringIdentifier(String o) throws InvalidParameterException {
+		mut = new StringIdentifierMutant(o);
+	}
+	
 	public int hashCode() {
 		return mut.hashCode();
 	}
