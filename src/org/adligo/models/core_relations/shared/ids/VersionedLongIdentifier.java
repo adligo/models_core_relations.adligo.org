@@ -101,8 +101,7 @@ public class VersionedLongIdentifier implements I_VersionedLongIdentifier, I_Imm
 	}
 
 	public boolean hasValue() {
-		// TODO Auto-generated method stub
-		return false;
+		return vim.hasValue();
 	}
 
 	public I_StorageIdentifier toImmutable() {
