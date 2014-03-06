@@ -4,8 +4,8 @@ import java.util.Set;
 
 import org.adligo.i.util.shared.I_Immutable;
 import org.adligo.models.core.shared.I_CustomInfo;
-import org.adligo.models.core.shared.I_Organization;
-import org.adligo.models.core.shared.I_OrganizationMutant;
+import org.adligo.models.core.shared.I_Org;
+import org.adligo.models.core.shared.I_OrgMutant;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
@@ -15,7 +15,7 @@ import org.adligo.models.core.shared.ValidationException;
 
 public class UserGroup implements I_UserGroup, I_Immutable {
 	private UserGroupMutant mutant;
-	private I_Organization org;
+	private I_Org org;
 	
 	public UserGroup() {
 		mutant = new UserGroupMutant();
@@ -23,7 +23,7 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 	
 	public UserGroup(I_UserGroup other) throws InvalidParameterException {
 		mutant = new UserGroupMutant(other);
-		I_Organization p_org = other.getOrg();
+		I_Org p_org = other.getOrg();
 		org = new Org(p_org);
 	}
 
@@ -53,7 +53,7 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 		return "mutant";
 	}
 
-	public I_Organization getOrg() {
+	public I_Org getOrg() {
 		return org;
 	}
 

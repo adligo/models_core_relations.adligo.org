@@ -2,7 +2,7 @@ package org.adligo.models.core_relations.shared;
 
 import java.util.Collection;
 
-import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_Org;
 import org.adligo.models.core.shared.I_Person;
 import org.adligo.models.core.shared.I_Storable;
 import org.adligo.models.core.shared.I_Subject;
@@ -18,6 +18,6 @@ public interface I_UserRelations extends I_User, I_Subject, I_Storable {
 
 	public I_User getUser();
 
-	public I_Organization getOrg();
+	public I_Org getOrg();
 
 }

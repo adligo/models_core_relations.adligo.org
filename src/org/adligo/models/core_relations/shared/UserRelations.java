@@ -7,7 +7,7 @@ import java.util.Set;
 import org.adligo.i.util.shared.I_Immutable;
 import org.adligo.models.core.shared.DomainName;
 import org.adligo.models.core.shared.EMailAddress;
-import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_Org;
 import org.adligo.models.core.shared.I_Person;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
@@ -36,7 +36,7 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 	 */
 	private I_User user;
 	private I_Person person;
-	private I_Organization org;
+	private I_Org org;
 	
 	public UserRelations() {
 		wrapped = new UserRelationsMutant();
@@ -54,7 +54,7 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 		if (psn != null) {
 			person = new Person(psn);
 		}
-		I_Organization org = p.getOrg();
+		I_Org org = p.getOrg();
 		if (org != null) {
 			org = new Org(org);
 		}
@@ -67,7 +67,7 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 		return person;
 	}
 
-	public I_Organization getOrg() {
+	public I_Org getOrg() {
 		return org;
 	}
 

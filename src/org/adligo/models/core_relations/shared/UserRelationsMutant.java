@@ -9,7 +9,7 @@ import org.adligo.i.util.shared.ClassUtils;
 import org.adligo.i.util.shared.StringUtils;
 import org.adligo.models.core.shared.DomainName;
 import org.adligo.models.core.shared.EMailAddress;
-import org.adligo.models.core.shared.I_Organization;
+import org.adligo.models.core.shared.I_Org;
 import org.adligo.models.core.shared.I_Person;
 import org.adligo.models.core.shared.I_Storable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
@@ -55,7 +55,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	 */
 	private I_User user;
 	private I_Person person;
-	private I_Organization org;
+	private I_Org org;
 	
 	
 	/**
@@ -221,7 +221,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	/* (non-Javadoc)
 	 * @see org.adligo.models.core.relations.client.I_UserRelations#getOrg()
 	 */
-	public I_Organization getOrg() {
+	public I_Org getOrg() {
 		return org;
 	}
 
@@ -301,7 +301,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 	}
 
 	@Override
-	public void setOrg(I_Organization p) throws InvalidParameterException {
+	public void setOrg(I_Org p) throws InvalidParameterException {
 		org = p;
 	}
 

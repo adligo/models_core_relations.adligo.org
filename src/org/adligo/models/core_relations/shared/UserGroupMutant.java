@@ -7,8 +7,8 @@ import java.util.Set;
 import org.adligo.i.util.shared.ClassUtils;
 import org.adligo.i.util.shared.StringUtils;
 import org.adligo.models.core.shared.I_CustomInfo;
-import org.adligo.models.core.shared.I_Organization;
-import org.adligo.models.core.shared.I_OrganizationMutant;
+import org.adligo.models.core.shared.I_Org;
+import org.adligo.models.core.shared.I_OrgMutant;
 import org.adligo.models.core.shared.I_Storable;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
@@ -112,11 +112,11 @@ public class UserGroupMutant implements I_UserGroup {
 		return sb.toString();
 	}
 
-	public I_Organization getOrg() {
+	public I_Org getOrg() {
 		return org;
 	}
 
-	public void setOrg(I_Organization other) throws InvalidParameterException {
+	public void setOrg(I_Org other) throws InvalidParameterException {
 		this.org = new Org(other);
 	}
 
