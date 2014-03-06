@@ -9,7 +9,7 @@ import org.adligo.models.core.shared.I_OrganizationMutant;
 import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
-import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.Org;
 import org.adligo.models.core.shared.ValidationException;
 
 
@@ -24,7 +24,7 @@ public class UserGroup implements I_UserGroup, I_Immutable {
 	public UserGroup(I_UserGroup other) throws InvalidParameterException {
 		mutant = new UserGroupMutant(other);
 		I_Organization p_org = other.getOrg();
-		org = new Organization(p_org);
+		org = new Org(p_org);
 	}
 
 	public Set<String> getRoles() {

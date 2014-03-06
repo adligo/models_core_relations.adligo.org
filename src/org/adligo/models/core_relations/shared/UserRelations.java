@@ -14,7 +14,7 @@ import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.I_User;
 import org.adligo.models.core.shared.I_UserMutant;
 import org.adligo.models.core.shared.InvalidParameterException;
-import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.Org;
 import org.adligo.models.core.shared.Person;
 import org.adligo.models.core.shared.User;
 import org.adligo.models.core.shared.ValidationException;
@@ -56,7 +56,7 @@ public class UserRelations implements I_UserRelations, I_Immutable {
 		}
 		I_Organization org = p.getOrg();
 		if (org != null) {
-			org = new Organization(org);
+			org = new Org(org);
 		}
 		roles = new HashSet<String>(p.getRoles());
 		groups = new HashSet<String>(p.getGroups());

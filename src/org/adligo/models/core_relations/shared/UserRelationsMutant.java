@@ -18,7 +18,7 @@ import org.adligo.models.core.shared.I_User;
 import org.adligo.models.core.shared.I_UserMutant;
 import org.adligo.models.core.shared.InvalidParameterException;
 import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.Org;
 import org.adligo.models.core.shared.Person;
 import org.adligo.models.core.shared.StorableValidator;
 import org.adligo.models.core.shared.UserMutant;
@@ -83,7 +83,7 @@ public class UserRelationsMutant implements I_UserRelationsMutant {
 			if (p.getPerson() != null) {
 				person = new Person(p.getPerson());
 			} else if (p.getOrg() != null) {
-				org = new Organization(p.getOrg());
+				org = new Org(p.getOrg());
 			}
 			Collection<String> o_groups = p.getGroups();
 			if (!o_groups.isEmpty()) {

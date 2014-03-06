@@ -14,7 +14,7 @@ import org.adligo.models.core.shared.I_StorageIdentifier;
 import org.adligo.models.core.shared.I_StorageInfo;
 import org.adligo.models.core.shared.InvalidParameterException;
 import org.adligo.models.core.shared.ModelsCoreConstantsObtainer;
-import org.adligo.models.core.shared.Organization;
+import org.adligo.models.core.shared.Org;
 import org.adligo.models.core.shared.StorableValidator;
 import org.adligo.models.core.shared.ValidationException;
 
@@ -25,7 +25,7 @@ public class UserGroupMutant implements I_UserGroup {
 	/**
 	 * id is handled by org
 	 */
-	protected Organization org;
+	protected Org org;
 	protected Set<String> roles = new HashSet<String>();
 	
 	/**
@@ -117,7 +117,7 @@ public class UserGroupMutant implements I_UserGroup {
 	}
 
 	public void setOrg(I_Organization other) throws InvalidParameterException {
-		this.org = new Organization(other);
+		this.org = new Org(other);
 	}
 
 	@Override
