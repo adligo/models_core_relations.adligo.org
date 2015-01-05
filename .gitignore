@@ -1,4 +1,5 @@
-classes_e/
-bin/
-classes/
+/bin/
+/build/
+/classes_e/
+/classes/
 models_core_relations*.jar
